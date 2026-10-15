@@ -1,0 +1,3929 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset=utf8>
+  <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <style>
+    :root {
+      color-scheme: light;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font: 14px -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #000
+    }
+
+    img {
+      max-width: 100%
+    }
+
+    [hidden]:not([hidden=until-found i]) {
+      display: none !important
+    }
+  </style>
+</head>
+
+<body>
+  <title>Our Little Universe</title>
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,600&family=Fredoka:wght@400;500;600&display=swap');
+
+    /* Layout: one long night-sky scroll. Every section is its own little stage where two cartoon friends react to what you tap. Pastel palette on deep midnight; the apology section turns into a soft lavender afternoon. */
+    :root {
+      --blush: #FFB7D5;
+      --lav: #C8B6FF;
+      --sky: #A7D8FF;
+      --cream: #FFF8EE;
+      --purple: #9275E8;
+      --night: #211B3A;
+      --ink: #2a1f3d;
+      --bg: #211B3A;
+      --fg: #FFF8EE;
+      --muted: #d4cbf0;
+      --card: rgba(255, 255, 255, .08);
+      --line: rgba(255, 255, 255, .2);
+      --accent: #FFB7D5;
+      --f-ui: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --f-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --f-hand: 'Caveat', 'Segoe Script', 'Bradley Hand', cursive;
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--f-ui);
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    body.lock {
+      overflow: hidden
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      cursor: pointer
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--sky);
+      outline-offset: 3px;
+      border-radius: 12px
+    }
+
+    #sky {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(900px 600px at 12% -5%, rgba(146, 117, 232, .35), transparent 60%), radial-gradient(800px 600px at 95% 15%, rgba(255, 183, 213, .16), transparent 55%), radial-gradient(900px 700px at 50% 110%, rgba(167, 216, 255, .14), transparent 60%)
+    }
+
+    #sky i {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: .7;
+      animation: tw 3s ease-in-out infinite
+    }
+
+    @keyframes tw {
+
+      0%,
+      100% {
+        opacity: .15;
+        transform: scale(.7)
+      }
+
+      50% {
+        opacity: .95;
+        transform: scale(1.2)
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 1
+    }
+
+    #fx {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 150;
+      pointer-events: none
+    }
+
+    .sec {
+      padding-block: 84px;
+      position: relative
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin-inline: auto;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px))
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin: 0 0 10px
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--f-serif);
+      font-weight: 700;
+      line-height: 1.05;
+      margin: 0;
+      text-wrap: balance
+    }
+
+    h2 {
+      font-size: clamp(34px, 6.4vw, 60px);
+      font-style: italic;
+      font-weight: 600
+    }
+
+    h3 {
+      font-size: clamp(24px, 4vw, 32px)
+    }
+
+    .lead {
+      font-family: var(--f-serif);
+      font-size: clamp(20px, 3.2vw, 26px);
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 14px 0 28px
+    }
+
+    .center {
+      text-align: center
+    }
+
+    .center .lead {
+      margin-inline: auto
+    }
+
+    .small {
+      font-size: 14px;
+      color: var(--muted)
+    }
+
+    .msg {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: clamp(20px, 3.6vw, 28px);
+      text-align: center;
+      min-height: 2.6em;
+      margin: 18px auto;
+      max-width: 34ch;
+      text-wrap: balance;
+      line-height: 1.3
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      backdrop-filter: blur(12px)
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 24px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: var(--ink);
+      background: linear-gradient(135deg, var(--blush), var(--lav));
+      box-shadow: 0 8px 24px rgba(200, 182, 255, .28), inset 0 1px 0 rgba(255, 255, 255, .6);
+      transition: transform .2s, box-shadow .2s;
+      min-height: 46px
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.02)
+    }
+
+    .btn:active {
+      transform: scale(.97)
+    }
+
+    .btn.ghost {
+      background: var(--card);
+      color: var(--fg);
+      border: 1px solid var(--line);
+      box-shadow: none
+    }
+
+    .btn.glow {
+      animation: glowp 2.4s ease-in-out infinite
+    }
+
+    @keyframes glowp {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 183, 213, .55), 0 8px 24px rgba(200, 182, 255, .3)
+      }
+
+      50% {
+        box-shadow: 0 0 0 14px rgba(255, 183, 213, 0), 0 8px 30px rgba(255, 183, 213, .5)
+      }
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-weight: 500;
+      transition: .2s;
+      color: var(--fg)
+    }
+
+    .chip:hover {
+      transform: translateY(-1px)
+    }
+
+    .chip[aria-pressed=true],
+    .chip.on {
+      background: linear-gradient(135deg, var(--blush), var(--lav));
+      color: var(--ink);
+      border-color: transparent
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin: 18px 0
+    }
+
+    /* ---------- topbar ---------- */
+    .topbar {
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 10px);
+      right: calc(env(safe-area-inset-right, 0px) + 10px);
+      z-index: 105;
+      display: flex;
+      gap: 8px
+    }
+
+    .tb {
+      border: 1px solid var(--line);
+      background: rgba(33, 27, 58, .72);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--fg)
+    }
+
+    .tb[aria-pressed=true] {
+      background: var(--blush);
+      color: var(--ink)
+    }
+
+    /* ---------- stage & actors ---------- */
+    .stage {
+      position: relative;
+      height: clamp(300px, 50vw, 400px);
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #2d2358 0%, #4a2f73 62%, #7b4a8f 100%);
+      isolation: isolate;
+      --w: clamp(92px, 19vw, 150px)
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      transition: background 1s
+    }
+
+    .stage[data-bg=soft]::before {
+      background: rgba(20, 16, 46, .5)
+    }
+
+    .stage[data-bg=warm]::before {
+      background: radial-gradient(circle at 50% 100%, rgba(255, 200, 160, .3), transparent 70%)
+    }
+
+    .stage[data-bg=glow]::before {
+      background: radial-gradient(circle at 50% 60%, rgba(255, 183, 213, .42), transparent 65%)
+    }
+
+    .stage[data-chaos="1"] {
+      animation: chaos .5s linear infinite
+    }
+
+    @keyframes chaos {
+      0% {
+        filter: hue-rotate(0)
+      }
+
+      100% {
+        filter: hue-rotate(360deg)
+      }
+    }
+
+    .stage::after {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: -18%;
+      height: 46%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255, 183, 213, .45), rgba(200, 182, 255, .18) 55%, transparent 72%);
+      z-index: 0
+    }
+
+    .deco {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .world {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      transform-origin: 50% 85%;
+      transition: transform 1.6s ease
+    }
+
+    .stage[data-zoom="1"] .world {
+      transform: scale(1.2)
+    }
+
+    .fxl {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .fl {
+      position: absolute;
+      opacity: 0;
+      animation: fl 3s ease-out forwards
+    }
+
+    @keyframes fl {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(.6)
+      }
+
+      15% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(var(--dx, 0), -170px) scale(1.1)
+      }
+    }
+
+    .deco .st {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #fff;
+      animation: tw 3.4s ease-in-out infinite
+    }
+
+    .moon {
+      position: absolute;
+      right: 9%;
+      top: 9%;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      box-shadow: inset -15px 3px 0 0 #fff8ee;
+      filter: drop-shadow(0 0 14px rgba(255, 248, 238, .55))
+    }
+
+    .moon.sm {
+      width: 38px;
+      height: 38px;
+      box-shadow: inset -11px 2px 0 0 #fff8ee
+    }
+
+    .planet {
+      position: absolute;
+      border-radius: 50%
+    }
+
+    .p1 {
+      left: 8%;
+      top: 14%;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle at 30% 30%, #e8f4ff, #A7D8FF 60%, #6aa6d8)
+    }
+
+    .p1::after {
+      content: "";
+      position: absolute;
+      left: -14px;
+      right: -14px;
+      top: 50%;
+      height: 10px;
+      border: 2px solid rgba(255, 248, 238, .7);
+      border-radius: 50%;
+      transform: translateY(-50%) rotate(-18deg)
+    }
+
+    .p2 {
+      left: 72%;
+      top: 34%;
+      width: 22px;
+      height: 22px;
+      background: radial-gradient(circle at 30% 30%, #fff, #FFB7D5 60%, #e07aa8)
+    }
+
+    .cloud {
+      position: absolute;
+      height: 20px;
+      width: 78px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, .55);
+      animation: drift 46s linear infinite
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: "";
+      position: absolute;
+      background: inherit;
+      border-radius: 50%
+    }
+
+    .cloud::before {
+      width: 34px;
+      height: 34px;
+      left: 10px;
+      top: -16px
+    }
+
+    .cloud::after {
+      width: 26px;
+      height: 26px;
+      left: 40px;
+      top: -10px
+    }
+
+    .c1 {
+      top: 22%;
+      animation-delay: -10s
+    }
+
+    .c2 {
+      top: 42%;
+      animation-delay: -30s;
+      transform: scale(.7)
+    }
+
+    .c3 {
+      top: 12%;
+      animation-delay: -22s;
+      transform: scale(.9)
+    }
+
+    @keyframes drift {
+      from {
+        left: -120px
+      }
+
+      to {
+        left: 100%
+      }
+    }
+
+    .ff {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffe9a8;
+      box-shadow: 0 0 10px 3px rgba(255, 233, 168, .8);
+      animation: ffly 7s ease-in-out infinite
+    }
+
+    @keyframes ffly {
+
+      0%,
+      100% {
+        transform: translate(0, 0);
+        opacity: .2
+      }
+
+      30% {
+        opacity: 1
+      }
+
+      50% {
+        transform: translate(22px, -26px)
+      }
+
+      75% {
+        transform: translate(-14px, -10px);
+        opacity: .8
+      }
+    }
+
+    .path {
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      bottom: 2%;
+      height: 13%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255, 248, 238, .5), rgba(255, 183, 213, .14) 60%, transparent 70%)
+    }
+
+    .petals i {
+      position: absolute;
+      top: -20px;
+      width: 12px;
+      height: 16px;
+      border-radius: 70% 0 70% 0;
+      background: #ffc4dc;
+      opacity: .85;
+      animation: fall 9s linear infinite
+    }
+
+    @keyframes fall {
+      from {
+        transform: translate(0, 0) rotate(0)
+      }
+
+      to {
+        transform: translate(50px, 460px) rotate(420deg)
+      }
+    }
+
+    .actor {
+      position: absolute;
+      bottom: 2%;
+      left: var(--x, 50%);
+      width: var(--w);
+      transform: translateX(-50%);
+      transition: left 1.4s cubic-bezier(.45, .05, .25, 1);
+      z-index: 3;
+      cursor: pointer
+    }
+
+    .actor .inner {
+      transform-origin: 50% 100%;
+      animation: breathe 3.6s ease-in-out infinite;
+      position: relative
+    }
+
+    .actor svg,
+    .actor .avimg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible
+    }
+
+    .actor .avimg {
+      border-radius: 24px;
+      object-fit: cover;
+      aspect-ratio: 2/3
+    }
+
+    .actor .rig {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2/3;
+      isolation: isolate;
+      overflow: visible
+    }
+
+    .actor .rig-part {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      pointer-events: none;
+      user-select: none
+    }
+
+    .actor .rig-base {
+      z-index: 1
+    }
+
+    .actor .rig-legs {
+      z-index: 2;
+      clip-path: polygon(27% 47%, 78% 47%, 91% 99%, 23% 99%)
+    }
+
+    .actor .rig-torso {
+      z-index: 3;
+      clip-path: polygon(24% 20%, 76% 20%, 76% 55%, 25% 55%)
+    }
+
+    .actor .rig-arm-a {
+      z-index: 4;
+      clip-path: polygon(17% 20%, 52% 21%, 60% 43%, 29% 44%);
+      transform-origin: 34% 29%;
+      animation: arm-idle 4.2s ease-in-out infinite
+    }
+
+    .actor .rig-arm-b {
+      z-index: 5;
+      clip-path: polygon(46% 19%, 81% 22%, 77% 43%, 51% 44%);
+      transform-origin: 67% 29%;
+      animation: arm-idle-b 4.8s ease-in-out infinite
+    }
+
+    .actor .rig-head {
+      z-index: 6;
+      clip-path: polygon(27% 0%, 73% 0%, 75% 25%, 26% 25%);
+      transform-origin: 50% 21%;
+      animation: head-idle 5.2s ease-in-out infinite
+    }
+
+    .actor .rig-face {
+      z-index: 7;
+      clip-path: polygon(35% 8%, 67% 8%, 68% 21%, 34% 21%);
+      transform-origin: 50% 15%;
+      animation: face-idle 4.4s ease-in-out infinite
+    }
+
+    .actor[data-anim=wave] .rig-arm-b,
+    .actor[data-pose=wave] .rig-arm-b {
+      animation: rig-wave .55s ease-in-out infinite alternate
+    }
+
+    .actor[data-anim=dance] .rig-legs {
+      animation: rig-legs-dance .4s ease-in-out infinite alternate
+    }
+
+    .actor[data-walk] .rig-legs {
+      animation: rig-legs-walk .32s ease-in-out infinite alternate
+    }
+
+    .actor[data-anim=jump] .rig-base {
+      animation: rig-jump .7s ease-in-out infinite
+    }
+
+    .actor[data-anim=bounce] .rig-base {
+      animation: rig-bounce .6s ease-in-out infinite
+    }
+
+    .actor[data-anim=laugh] .rig-head {
+      animation: rig-laugh .35s ease-in-out infinite
+    }
+
+    .actor[data-anim=sleep] .rig-head {
+      animation: rig-sleep 4s ease-in-out infinite
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        transform: scale(1, 1)
+      }
+
+      50% {
+        transform: scale(1.012, 1.022)
+      }
+    }
+
+    @keyframes arm-idle {
+
+      0%,
+      100% {
+        transform: rotate(0)
+      }
+
+      50% {
+        transform: rotate(1.5deg)
+      }
+    }
+
+    @keyframes arm-idle-b {
+
+      0%,
+      100% {
+        transform: rotate(0)
+      }
+
+      50% {
+        transform: rotate(-1.7deg)
+      }
+    }
+
+    @keyframes head-idle {
+
+      0%,
+      88%,
+      100% {
+        transform: rotate(0)
+      }
+
+      92% {
+        transform: rotate(-2deg)
+      }
+
+      96% {
+        transform: rotate(1deg)
+      }
+    }
+
+    @keyframes face-idle {
+
+      0%,
+      92%,
+      100% {
+        filter: none
+      }
+
+      95% {
+        filter: brightness(1.03)
+      }
+    }
+
+    @keyframes rig-wave {
+      from {
+        transform: rotate(-3deg)
+      }
+
+      to {
+        transform: rotate(7deg)
+      }
+    }
+
+    @keyframes rig-legs-dance {
+      from {
+        transform: rotate(-1.5deg)
+      }
+
+      to {
+        transform: rotate(1.5deg)
+      }
+    }
+
+    @keyframes rig-legs-walk {
+      from {
+        transform: translateY(0) rotate(-1deg)
+      }
+
+      to {
+        transform: translateY(-2px) rotate(1deg)
+      }
+    }
+
+    @keyframes rig-jump {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      40% {
+        transform: translateY(-12px)
+      }
+    }
+
+    @keyframes rig-bounce {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-7px)
+      }
+    }
+
+    @keyframes rig-laugh {
+
+      0%,
+      100% {
+        transform: rotate(2deg)
+      }
+
+      50% {
+        transform: rotate(-2deg) translateY(-2px)
+      }
+    }
+
+    @keyframes rig-sleep {
+
+      0%,
+      100% {
+        transform: rotate(1deg)
+      }
+
+      50% {
+        transform: rotate(3deg) translateY(2px)
+      }
+    }
+
+    .bub {
+      position: absolute;
+      left: 50%;
+      top: -6px;
+      transform: translateX(-50%);
+      font-size: 24px;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .3))
+    }
+
+    .tag {
+      position: absolute;
+      left: 50%;
+      top: -26px;
+      transform: translateX(-50%) scale(0);
+      background: #fff8ee;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 2px 12px;
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: transform .5s cubic-bezier(.3, 1.6, .5, 1)
+    }
+
+    .stage[data-tags="1"] .tag {
+      transform: translateX(-50%) scale(1)
+    }
+
+    .actor[data-hidden="1"] {
+      opacity: 0;
+      transform: translateX(-50%) scale(.2)
+    }
+
+    .actor {
+      transition: left 1.4s cubic-bezier(.45, .05, .25, 1), opacity .5s, transform .6s cubic-bezier(.3, 1.6, .5, 1)
+    }
+
+    /* expressions */
+    .mo {
+      fill: none;
+      stroke: #2a1f3d;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: none
+    }
+
+    .mo-oh {
+      fill: #7a2f4a
+    }
+
+    .actor[data-mouth=smile] .mo-smile,
+    .actor[data-mouth=soft] .mo-soft,
+    .actor[data-mouth=grin] .mo-grin,
+    .actor[data-mouth=flat] .mo-flat,
+    .actor[data-mouth=frown] .mo-frown,
+    .actor[data-mouth=oh] .mo-oh,
+    .actor[data-mouth=smirk] .mo-smirk,
+    .actor[data-mouth=tongue] .mo-tongue,
+    .actor[data-mouth=wobble] .mo-wobble {
+      display: inline
+    }
+
+    .actor:not([data-mouth]) .mo-smile {
+      display: inline
+    }
+
+    .eyes {
+      display: none
+    }
+
+    .e-happy,
+    .e-closed {
+      fill: none;
+      stroke: #2a1f3d;
+      stroke-width: 2.6;
+      stroke-linecap: round
+    }
+
+    .e-open {
+      transform-box: fill-box;
+      transform-origin: center
+    }
+
+    .actor[data-eyes=open] .e-open,
+    .actor[data-eyes=wide] .e-open,
+    .actor:not([data-eyes]) .e-open {
+      display: inline
+    }
+
+    .actor[data-eyes=wide] .e-open {
+      transform: scale(1.2)
+    }
+
+    .actor[data-eyes=happy] .e-happy {
+      display: inline
+    }
+
+    .actor[data-eyes=closed] .e-closed {
+      display: inline
+    }
+
+    .blink {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation: blink 4.6s infinite
+    }
+
+    .actor[data-who=sheetal] .blink {
+      animation-delay: -2.1s
+    }
+
+    @keyframes blink {
+
+      0%,
+      92%,
+      100% {
+        transform: scaleY(1)
+      }
+
+      95% {
+        transform: scaleY(.08)
+      }
+    }
+
+    .pup {
+      transition: transform .4s
+    }
+
+    .actor[data-look=left] .pup {
+      transform: translate(-2.6px, 0)
+    }
+
+    .actor[data-look=right] .pup {
+      transform: translate(2.6px, 0)
+    }
+
+    .actor[data-look=down] .pup {
+      transform: translate(0, 2.6px)
+    }
+
+    .actor[data-look=up] .pup {
+      transform: translate(0, -2.4px)
+    }
+
+    .brow {
+      fill: none;
+      stroke: var(--brow, #2b1d1a);
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: transform .35s
+    }
+
+    .actor[data-brow=up] .brow {
+      transform: translateY(-3px)
+    }
+
+    .actor[data-brow=angry] .bl {
+      transform: rotate(18deg) translateY(1px)
+    }
+
+    .actor[data-brow=angry] .br {
+      transform: rotate(-18deg) translateY(1px)
+    }
+
+    .actor[data-brow=sad] .bl {
+      transform: rotate(-16deg)
+    }
+
+    .actor[data-brow=sad] .br {
+      transform: rotate(16deg)
+    }
+
+    .actor[data-brow=one] .bl {
+      transform: translateY(-4px) rotate(-8deg)
+    }
+
+    .blushc {
+      fill: #ff8fb8;
+      opacity: 0;
+      transition: opacity .5s
+    }
+
+    .actor[data-blush="1"] .blushc {
+      opacity: .5
+    }
+
+    .actor[data-blush="2"] .blushc {
+      opacity: .9
+    }
+
+    .sweat,
+    .tear {
+      display: none
+    }
+
+    .actor[data-sweat="1"] .sweat {
+      display: inline;
+      animation: drip 1.6s ease-in infinite
+    }
+
+    .actor[data-tear="1"] .tear {
+      display: inline;
+      animation: drip 2.2s ease-in infinite
+    }
+
+    @keyframes drip {
+      0% {
+        transform: translateY(-3px);
+        opacity: 0
+      }
+
+      30% {
+        opacity: 1
+      }
+
+      100% {
+        transform: translateY(12px);
+        opacity: 0
+      }
+    }
+
+    /* limbs & poses */
+    .armL,
+    .armR,
+    .legL,
+    .legR {
+      transform-box: fill-box;
+      transform-origin: 50% 0;
+      transition: transform .55s cubic-bezier(.3, 1.3, .5, 1)
+    }
+
+    .actor[data-pose=wave] .armR {
+      animation: waveA .5s ease-in-out infinite alternate;
+      transform: rotate(-150deg)
+    }
+
+    @keyframes waveA {
+      from {
+        transform: rotate(-135deg)
+      }
+
+      to {
+        transform: rotate(-172deg)
+      }
+    }
+
+    .actor[data-pose=up] .armL {
+      transform: rotate(155deg)
+    }
+
+    .actor[data-pose=up] .armR {
+      transform: rotate(-155deg)
+    }
+
+    .actor[data-pose=cross] .armL {
+      transform: rotate(-82deg)
+    }
+
+    .actor[data-pose=cross] .armR {
+      transform: rotate(82deg)
+    }
+
+    .actor[data-pose=reachR] .armR {
+      transform: rotate(-105deg)
+    }
+
+    .actor[data-pose=reachR] .armL {
+      transform: rotate(-12deg)
+    }
+
+    .actor[data-pose=reachL] .armL {
+      transform: rotate(105deg)
+    }
+
+    .actor[data-pose=reachL] .armR {
+      transform: rotate(12deg)
+    }
+
+    .actor[data-pose=hold] .armR {
+      transform: rotate(-42deg)
+    }
+
+    .actor[data-pose=hands] .armL {
+      transform: rotate(-38deg)
+    }
+
+    .actor[data-pose=hands] .armR {
+      transform: rotate(38deg)
+    }
+
+    .actor[data-pose=shrug] .armL {
+      transform: rotate(28deg)
+    }
+
+    .actor[data-pose=shrug] .armR {
+      transform: rotate(-28deg)
+    }
+
+    .actor[data-pose=dancep] .armL {
+      animation: dArmL .45s ease-in-out infinite alternate
+    }
+
+    .actor[data-pose=dancep] .armR {
+      animation: dArmR .45s ease-in-out infinite alternate
+    }
+
+    @keyframes dArmL {
+      from {
+        transform: rotate(30deg)
+      }
+
+      to {
+        transform: rotate(150deg)
+      }
+    }
+
+    @keyframes dArmR {
+      from {
+        transform: rotate(-150deg)
+      }
+
+      to {
+        transform: rotate(-30deg)
+      }
+    }
+
+    .actor[data-walk] .legL {
+      animation: stepL .32s ease-in-out infinite alternate
+    }
+
+    .actor[data-walk] .legR {
+      animation: stepR .32s ease-in-out infinite alternate
+    }
+
+    @keyframes stepL {
+      from {
+        transform: rotate(-22deg)
+      }
+
+      to {
+        transform: rotate(22deg)
+      }
+    }
+
+    @keyframes stepR {
+      from {
+        transform: rotate(22deg)
+      }
+
+      to {
+        transform: rotate(-22deg)
+      }
+    }
+
+    .actor[data-walk] .inner {
+      animation: walkbob .32s ease-in-out infinite alternate
+    }
+
+    @keyframes walkbob {
+      from {
+        transform: translateY(0)
+      }
+
+      to {
+        transform: translateY(-5px)
+      }
+    }
+
+    .actor[data-anim=bounce] .inner {
+      animation: bounce .6s ease-in-out infinite
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-14px)
+      }
+    }
+
+    .actor[data-anim=jump] .inner {
+      animation: jump .7s ease-in-out infinite
+    }
+
+    @keyframes jump {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1.06, .92)
+      }
+
+      40% {
+        transform: translateY(-34px) scale(.96, 1.06)
+      }
+    }
+
+    .actor[data-anim=dance] .inner {
+      animation: dance .8s ease-in-out infinite
+    }
+
+    @keyframes dance {
+
+      0%,
+      100% {
+        transform: rotate(-6deg) translateY(0)
+      }
+
+      25% {
+        transform: rotate(0) translateY(-10px)
+      }
+
+      50% {
+        transform: rotate(6deg) translateY(0)
+      }
+
+      75% {
+        transform: rotate(0) translateY(-10px)
+      }
+    }
+
+    .actor[data-anim=laugh] .inner {
+      animation: laughA .35s ease-in-out infinite
+    }
+
+    @keyframes laughA {
+
+      0%,
+      100% {
+        transform: rotate(7deg) translateY(2px)
+      }
+
+      50% {
+        transform: rotate(-2deg) translateY(-3px)
+      }
+    }
+
+    .actor[data-anim=sway] .inner {
+      animation: sway 3s ease-in-out infinite
+    }
+
+    @keyframes sway {
+
+      0%,
+      100% {
+        transform: rotate(-3deg)
+      }
+
+      50% {
+        transform: rotate(3deg)
+      }
+    }
+
+    .actor[data-anim=sleep] .inner {
+      animation: sleepA 4s ease-in-out infinite
+    }
+
+    @keyframes sleepA {
+
+      0%,
+      100% {
+        transform: rotate(3deg) translateY(4px)
+      }
+
+      50% {
+        transform: rotate(6deg) translateY(7px)
+      }
+    }
+
+    .actor[data-anim=nod] .inner {
+      animation: nod .8s ease-in-out 2
+    }
+
+    @keyframes nod {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(6px) rotate(2deg)
+      }
+    }
+
+    .actor[data-anim=squeeze] .inner {
+      animation: squeeze 1s ease-in-out infinite
+    }
+
+    @keyframes squeeze {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.05, .96)
+      }
+    }
+
+    .actor[data-anim=rock] .inner {
+      animation: rock 1.2s ease-in-out infinite
+    }
+
+    @keyframes rock {
+
+      0%,
+      100% {
+        transform: rotate(-5deg)
+      }
+
+      50% {
+        transform: rotate(5deg)
+      }
+    }
+
+    .actor[data-anim=shake] .inner {
+      animation: shakeA .3s linear infinite
+    }
+
+    @keyframes shakeA {
+
+      0%,
+      100% {
+        transform: translateX(-2px)
+      }
+
+      50% {
+        transform: translateX(2px)
+      }
+    }
+
+    .actor.poked .inner {
+      animation: jump .5s ease-in-out 1
+    }
+
+    /* props */
+    .prop {
+      display: none
+    }
+
+    .actor[data-prop=flower] .prop-flower,
+    .actor[data-prop=letter] .prop-letter,
+    .actor[data-prop=cookie] .prop-cookie,
+    .actor[data-prop=heart] .prop-heart {
+      display: inline
+    }
+
+    .actor[data-pose=reachR] .prop {
+      transform: translate(12px, -38px)
+    }
+
+    .bloom {
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: scale(.25);
+      transition: transform 1.1s cubic-bezier(.3, 1.5, .5, 1)
+    }
+
+    .actor[data-bloom="1"] .bloom {
+      transform: scale(1)
+    }
+
+    .actor[data-bloom="1"] .prop-flower {
+      filter: drop-shadow(0 0 7px #ffb7d5)
+    }
+
+    .prop-heart {
+      animation: hbeat 1.2s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px #ff7eb0)
+    }
+
+    @keyframes hbeat {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.15)
+      }
+    }
+
+    .dotline {
+      position: absolute;
+      left: 14%;
+      right: 14%;
+      top: 52%;
+      border-top: 3px dotted rgba(255, 183, 213, .9);
+      opacity: 0;
+      transition: opacity 1s;
+      filter: drop-shadow(0 0 6px #ffb7d5);
+      z-index: 1
+    }
+
+    .stage[data-link="1"] .dotline {
+      opacity: 1
+    }
+
+    .infin {
+      position: absolute;
+      left: 50%;
+      top: 6%;
+      transform: translateX(-50%) scale(.6);
+      font-size: min(30vw, 230px);
+      line-height: 1;
+      color: rgba(255, 248, 238, .9);
+      text-shadow: 0 0 30px #FFB7D5, 0 0 70px #C8B6FF;
+      opacity: 0;
+      transition: opacity 1.2s, transform 1.2s;
+      z-index: 1;
+      font-family: var(--f-serif)
+    }
+
+    .stage[data-inf="1"] .infin {
+      opacity: .85;
+      transform: translateX(-50%) scale(1)
+    }
+
+    .blanket {
+      position: absolute;
+      left: 28%;
+      right: 28%;
+      bottom: 0;
+      height: 34%;
+      border-radius: 40px 40px 0 0;
+      background: repeating-linear-gradient(45deg, #C8B6FF 0 14px, #b4a0f5 14px 28px);
+      transform: translateY(110%);
+      transition: transform 1s;
+      z-index: 4;
+      box-shadow: 0 -6px 20px rgba(0, 0, 0, .25)
+    }
+
+    .stage[data-blanket="1"] .blanket {
+      transform: none
+    }
+
+    /* ---------- intro ---------- */
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: radial-gradient(800px 600px at 50% 40%, #3b2d70, #211B3A 70%);
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      padding: calc(env(safe-area-inset-top, 0px) + 60px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 28px) max(16px, env(safe-area-inset-left, 0px));
+      transition: opacity 1.2s, transform 1.4s
+    }
+
+    #intro.leaving {
+      opacity: 0;
+      transform: scale(1.35);
+      pointer-events: none
+    }
+
+    #intro .stars i {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      animation: tw 3s infinite
+    }
+
+    .intro-inner {
+      margin: auto;
+      width: 100%;
+      max-width: 620px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative
+    }
+
+    .names {
+      font-weight: 600;
+      font-size: clamp(24px, 6vw, 38px);
+      display: flex;
+      gap: .5em;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: floaty 5s ease-in-out infinite
+    }
+
+    @keyframes floaty {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    .intro-stage {
+      width: 100%;
+      height: 270px;
+      background: none;
+      border: 0;
+      overflow: visible;
+      --w: clamp(80px, 22vw, 120px)
+    }
+
+    .intro-stage::after {
+      display: none
+    }
+
+    .intro-line {
+      margin: 0;
+      font-size: 18px;
+      color: var(--muted)
+    }
+
+    .intro-line.serif {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: 26px;
+      color: var(--fg)
+    }
+
+    .ic {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px 24px;
+      font-family: var(--f-serif);
+      font-size: clamp(19px, 3.4vw, 23px);
+      line-height: 1.5;
+      white-space: pre-wrap;
+      text-align: left;
+      width: 100%;
+      min-height: 120px
+    }
+
+    .typing::after {
+      content: "▍";
+      margin-left: 2px;
+      color: var(--blush);
+      animation: caret .8s steps(2) infinite
+    }
+
+    @keyframes caret {
+      50% {
+        opacity: 0
+      }
+    }
+
+    .gift {
+      position: absolute;
+      left: 50%;
+      bottom: 6px;
+      width: 150px;
+      height: 150px;
+      transform: translateX(-50%);
+      z-index: 4;
+      animation: floaty 4s ease-in-out infinite
+    }
+
+    .gift .glow {
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      width: 200px;
+      height: 200px;
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 248, 238, .95), rgba(255, 183, 213, .5) 40%, transparent 70%);
+      transition: transform 1s
+    }
+
+    .gift.open .glow {
+      transform: translate(-50%, -50%) scale(1.2)
+    }
+
+    .gift .box {
+      position: absolute;
+      left: 5px;
+      bottom: 0;
+      width: 140px;
+      height: 96px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ffc4dc, #f58fbd)
+    }
+
+    .gift .lid {
+      position: absolute;
+      left: -2px;
+      top: 20px;
+      width: 154px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ffd6e8, #ff9fc8);
+      transition: transform .9s cubic-bezier(.3, 1.4, .5, 1);
+      z-index: 2;
+      transform-origin: 10% 100%
+    }
+
+    .gift .rib {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 22px;
+      height: 100%;
+      transform: translateX(-50%);
+      background: #fff8ee
+    }
+
+    .gift .rib2 {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 36%;
+      height: 18px;
+      background: #fff8ee;
+      opacity: .9
+    }
+
+    .gift .bow {
+      position: absolute;
+      left: 50%;
+      top: -22px;
+      width: 60px;
+      height: 30px;
+      transform: translateX(-50%)
+    }
+
+    .gift .bow b {
+      position: absolute;
+      top: 0;
+      width: 28px;
+      height: 26px;
+      border: 6px solid #fff8ee;
+      border-radius: 60% 60% 20% 60%;
+      transition: transform .9s, opacity .9s
+    }
+
+    .gift .bow b:first-child {
+      left: 0;
+      transform: rotate(-12deg)
+    }
+
+    .gift .bow b:nth-child(2) {
+      right: 0;
+      transform: scaleX(-1) rotate(-12deg)
+    }
+
+    .gift .bow s {
+      position: absolute;
+      left: 50%;
+      top: 14px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff8ee;
+      transform: translateX(-50%);
+      transition: opacity .6s
+    }
+
+    .gift.shake {
+      animation: shk .9s ease-in-out
+    }
+
+    @keyframes shk {
+
+      0%,
+      100% {
+        transform: translateX(-50%) rotate(0)
+      }
+
+      15% {
+        transform: translateX(-50%) rotate(-9deg)
+      }
+
+      30% {
+        transform: translateX(-50%) rotate(8deg)
+      }
+
+      45% {
+        transform: translateX(-50%) rotate(-7deg)
+      }
+
+      60% {
+        transform: translateX(-50%) rotate(6deg)
+      }
+
+      80% {
+        transform: translateX(-50%) rotate(-3deg)
+      }
+    }
+
+    .gift.untie .bow b:first-child {
+      transform: translate(-40px, 60px) rotate(-100deg);
+      opacity: 0
+    }
+
+    .gift.untie .bow b:nth-child(2) {
+      transform: translate(40px, 60px) scaleX(-1) rotate(-100deg);
+      opacity: 0
+    }
+
+    .gift.untie .bow s {
+      opacity: 0
+    }
+
+    .gift.open .lid {
+      transform: translate(-18px, -64px) rotate(-22deg)
+    }
+
+    .gift.open {
+      animation: none
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      padding-top: calc(env(safe-area-inset-top, 0px) + 70px);
+      padding-bottom: 56px
+    }
+
+    h1.big {
+      font-size: clamp(40px, 10.5vw, 104px);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      line-height: .95;
+      margin: 6px 0 14px;
+      background: linear-gradient(100deg, var(--blush), var(--lav) 50%, var(--sky));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-wrap: balance
+    }
+
+    .sub {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: clamp(22px, 4vw, 32px);
+      margin: 0 0 26px;
+      color: var(--cream)
+    }
+
+    .stage.big {
+      height: clamp(320px, 56vw, 460px);
+      --w: clamp(104px, 23vw, 180px)
+    }
+
+    .tags {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin: 18px 0
+    }
+
+    .ntag {
+      border-radius: 999px;
+      padding: 8px 22px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      color: var(--ink);
+      animation: floaty 4s ease-in-out infinite
+    }
+
+    .ntag.r {
+      background: var(--sky)
+    }
+
+    .ntag.s {
+      background: var(--blush);
+      animation-delay: -2s
+    }
+
+    .meter {
+      max-width: 560px;
+      margin: 10px auto 34px;
+      text-align: center
+    }
+
+    .meter .lab {
+      font-weight: 600;
+      letter-spacing: .1em;
+      font-size: 14px;
+      margin-bottom: 8px
+    }
+
+    .bar {
+      height: 20px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      position: relative
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--sky), var(--lav), var(--blush), #ffe9a8);
+      background-size: 200% 100%;
+      animation: shine 3s linear infinite;
+      transition: width 2.4s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    @keyframes shine {
+      to {
+        background-position: -200% 0
+      }
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px
+    }
+
+    .menu .btn {
+      width: 100%
+    }
+
+    /* ---------- emotions ---------- */
+    .msgbox {
+      min-height: 5.2em
+    }
+
+    .chip.em {
+      padding: 10px 16px
+    }
+
+    /* ---------- sorry ---------- */
+    .sec-sorry {
+      --fg: #2b2150;
+      --muted: #5b4d86;
+      --card: rgba(255, 255, 255, .62);
+      --line: rgba(146, 117, 232, .35);
+      --accent: #8a55d6;
+      color: var(--fg);
+      background: linear-gradient(180deg, #211B3A 0, #cbbcff 140px, #ece3ff 40%, #f7ebff 80%, #ffeaf3 100%)
+    }
+
+    .sec-sorry .stage {
+      background: linear-gradient(180deg, #d6c6ff, #f0d9ff 70%, #ffd9ea)
+    }
+
+    .sec-sorry .stage::after {
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, .9), rgba(200, 182, 255, .2) 60%, transparent 72%)
+    }
+
+    .sec-sorry .btn.ghost {
+      color: var(--fg)
+    }
+
+    .sec-sorry .chip {
+      color: var(--fg)
+    }
+
+    .sec-sorry .msg {
+      color: #2b2150
+    }
+
+    .so-body {
+      margin-top: 8px;
+      min-height: 180px
+    }
+
+    .letter {
+      font-family: var(--f-hand);
+      font-size: clamp(22px, 4.6vw, 28px);
+      line-height: 34px;
+      color: #3a2f55;
+      background: #fffaf0 repeating-linear-gradient(transparent 0 33px, rgba(146, 117, 232, .2) 33px 34px);
+      padding: 20px 24px 24px;
+      border-radius: 8px;
+      box-shadow: 0 18px 40px rgba(90, 60, 160, .25), 0 0 0 1px rgba(146, 117, 232, .15);
+      white-space: pre-wrap;
+      max-width: 680px;
+      margin: 16px auto;
+      transform: rotate(-.5deg);
+      position: relative;
+      text-align: left
+    }
+
+    .opts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 20px
+    }
+
+    .opt {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #2b2150;
+      border-radius: 22px;
+      padding: 20px;
+      font-weight: 600;
+      font-size: 18px;
+      text-align: left;
+      box-shadow: 0 10px 26px rgba(120, 90, 200, .16);
+      transition: transform .2s
+    }
+
+    .opt:hover {
+      transform: translateY(-4px) rotate(-.6deg)
+    }
+
+    .opt small {
+      display: block;
+      font-weight: 400;
+      color: #6a5c92;
+      font-size: 14px;
+      margin-top: 6px
+    }
+
+    textarea,
+    input[type=text],
+    select {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .9);
+      color: #2b2150;
+      padding: 12px 14px;
+      font: inherit
+    }
+
+    .talk {
+      max-width: 620px;
+      margin: 16px auto;
+      display: grid;
+      gap: 10px
+    }
+
+    .bridge {
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: 20%;
+      height: 40%;
+      z-index: 1;
+      pointer-events: none
+    }
+
+    .bridge svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible
+    }
+
+    .bridge path.cable {
+      stroke-dasharray: 700;
+      stroke-dashoffset: 700;
+      animation: draw 2.4s ease forwards
+    }
+
+    .bridge path.planks {
+      stroke-dasharray: 3 9;
+      stroke-dashoffset: 0;
+      opacity: 0;
+      animation: fadein 1s 1.6s forwards
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0
+      }
+    }
+
+    @keyframes fadein {
+      to {
+        opacity: 1
+      }
+    }
+
+    /* ---------- memories ---------- */
+    .wall {
+      columns: 3 220px;
+      column-gap: 26px;
+      margin-top: 30px
+    }
+
+    .polaroid {
+      display: block;
+      width: 100%;
+      break-inside: avoid;
+      background: #fff;
+      color: var(--ink);
+      padding: 12px 12px 14px;
+      border: 0;
+      border-radius: 4px;
+      margin: 0 0 30px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .35);
+      transform: rotate(var(--rot, 0deg));
+      transition: transform .3s;
+      position: relative;
+      text-align: left
+    }
+
+    .polaroid:hover {
+      transform: rotate(0) scale(1.04) translateY(-4px)
+    }
+
+    .tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      width: 84px;
+      height: 24px;
+      transform: translateX(-50%) rotate(-4deg);
+      background: rgba(255, 183, 213, .75);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .2)
+    }
+
+    .polaroid:nth-child(even) .tape {
+      background: rgba(167, 216, 255, .8);
+      transform: translateX(-50%) rotate(5deg)
+    }
+
+    .photo {
+      display: grid;
+      place-items: center;
+      aspect-ratio: var(--ar, 1/1);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px
+    }
+
+    .photo .ph {
+      font-size: 56px;
+      animation: floaty 4s ease-in-out infinite;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .2))
+    }
+
+    .photo .sp {
+      position: absolute;
+      font-size: 16px;
+      animation: tw 2.6s infinite
+    }
+
+    .pcap {
+      display: block;
+      font-family: var(--f-hand);
+      font-size: 24px;
+      line-height: 1.1;
+      margin-top: 12px
+    }
+
+    .pdate {
+      display: block;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #7a6aa6;
+      margin-top: 4px;
+      min-height: 1em
+    }
+
+    .wallcap {
+      font-family: var(--f-hand);
+      font-size: clamp(24px, 4vw, 32px);
+      text-align: center;
+      color: var(--blush);
+      margin: 8px auto 0;
+      max-width: 30ch
+    }
+
+    /* ---------- modal ---------- */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 110;
+      display: grid;
+      place-items: center;
+      padding: calc(env(safe-area-inset-top, 0px) + 16px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 16px) max(16px, env(safe-area-inset-left, 0px));
+      background: rgba(20, 15, 44, .78);
+      backdrop-filter: blur(8px);
+      overflow: auto
+    }
+
+    .modal-in {
+      width: min(560px, 100%);
+      max-height: 100%;
+      overflow: auto;
+      position: relative
+    }
+
+    .mclose {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      z-index: 3;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--blush);
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 700
+    }
+
+    .big-polaroid {
+      background: #fff;
+      color: var(--ink);
+      padding: 16px 16px 22px;
+      border-radius: 6px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, .5);
+      animation: pop .5s cubic-bezier(.3, 1.5, .5, 1)
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(.7) rotate(-6deg);
+        opacity: 0
+      }
+    }
+
+    .big-polaroid .photo {
+      aspect-ratio: 4/3
+    }
+
+    .big-polaroid .photo .ph {
+      font-size: 96px
+    }
+
+    .big-polaroid .pcap {
+      font-size: 34px
+    }
+
+    .big-polaroid p {
+      font-family: var(--f-hand);
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 10px 0 0;
+      color: #4a3f6b
+    }
+
+    .mnav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      gap: 8px
+    }
+
+    .paper {
+      background: #fff8ee radial-gradient(circle at 20% 20%, rgba(200, 182, 255, .18) 0 2px, transparent 3px) 0 0/22px 22px;
+      color: #3a2f55;
+      border-radius: 10px;
+      padding: 30px 26px;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, .45);
+      font-family: var(--f-hand);
+      font-size: clamp(26px, 5vw, 34px);
+      line-height: 1.2;
+      text-align: center;
+      transform-origin: 50% 0;
+      animation: unfold .9s cubic-bezier(.2, .8, .3, 1)
+    }
+
+    @keyframes unfold {
+      0% {
+        transform: perspective(900px) rotateX(-88deg) scaleY(.2);
+        opacity: 0
+      }
+
+      60% {
+        opacity: 1
+      }
+
+      100% {
+        transform: perspective(900px) rotateX(0) scaleY(1)
+      }
+    }
+
+    /* ---------- hug / laugh ---------- */
+    .bigact {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .bigact .btn {
+      font-size: 20px;
+      padding: 16px 30px
+    }
+
+    /* ---------- games ---------- */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px
+    }
+
+    .gpanel {
+      max-width: 640px;
+      margin: 0 auto
+    }
+
+    .stage.mini {
+      height: 200px;
+      --w: clamp(60px, 14vw, 92px);
+      margin-bottom: 16px
+    }
+
+    .ans {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 18px 0
+    }
+
+    .ans .btn {
+      font-size: 18px
+    }
+
+    .fb {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: 24px;
+      text-align: center;
+      min-height: 2.4em
+    }
+
+    .gcv {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      border-radius: 22px;
+      touch-action: none;
+      background: #2a2050;
+      border: 1px solid var(--line)
+    }
+
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      max-width: 420px;
+      margin: 0 auto 10px;
+      font-weight: 600;
+      letter-spacing: .06em
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: rgba(33, 27, 58, .82);
+      border-radius: 22px;
+      padding: 20px;
+      z-index: 3
+    }
+
+    .gwrap {
+      position: relative;
+      max-width: 420px;
+      margin: 0 auto
+    }
+
+    svg.sky {
+      width: 100%;
+      max-width: 640px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 24px;
+      background: radial-gradient(ellipse at 50% 100%, #3b2d70, #1a1432);
+      border: 1px solid var(--line);
+      touch-action: manipulation
+    }
+
+    .cstar {
+      cursor: pointer
+    }
+
+    .cstar circle.hit {
+      fill: transparent
+    }
+
+    .cstar .core {
+      fill: #fff8ee;
+      filter: drop-shadow(0 0 6px #fff)
+    }
+
+    .cstar.next .ring {
+      stroke: var(--blush);
+      fill: none;
+      stroke-width: 2;
+      animation: ringp 1.2s ease-out infinite;
+      transform-box: fill-box;
+      transform-origin: center
+    }
+
+    @keyframes ringp {
+      from {
+        transform: scale(.6);
+        opacity: 1
+      }
+
+      to {
+        transform: scale(2);
+        opacity: 0
+      }
+    }
+
+    .cword {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: clamp(30px, 6vw, 46px);
+      text-align: center;
+      min-height: 1.4em;
+      letter-spacing: .2em;
+      color: var(--blush);
+      text-shadow: 0 0 18px rgba(255, 183, 213, .7)
+    }
+
+    /* ---------- notes ---------- */
+    .today {
+      max-width: 520px;
+      margin: 6px auto 30px
+    }
+
+    .envs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center
+    }
+
+    .env {
+      width: 92px;
+      height: 92px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      font-size: 44px;
+      display: grid;
+      place-items: center;
+      animation: floaty 4s ease-in-out infinite;
+      transition: transform .2s
+    }
+
+    .env:hover {
+      transform: scale(1.12) rotate(-6deg)
+    }
+
+    /* ---------- music ---------- */
+    .player {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 26px;
+      align-items: center;
+      max-width: 760px;
+      margin: 0 auto
+    }
+
+    .disc {
+      width: 170px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--blush) 0 11%, #211B3A 11% 14%, transparent 14%), conic-gradient(from 20deg, #3b2d70, #9275E8, #3b2d70, #C8B6FF, #3b2d70);
+      box-shadow: 0 0 0 6px rgba(255, 255, 255, .08), 0 20px 40px rgba(0, 0, 0, .4);
+      animation: spin 6s linear infinite;
+      animation-play-state: paused
+    }
+
+    .player.on .disc {
+      animation-play-state: running
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .pl-t {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: clamp(28px, 5vw, 40px);
+      line-height: 1.1
+    }
+
+    .ctrls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 14px 0;
+      flex-wrap: wrap
+    }
+
+    .round {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      font-size: 20px
+    }
+
+    #viz {
+      width: 100%;
+      height: 56px;
+      display: block;
+      margin-top: 8px
+    }
+
+    .songs {
+      max-width: 760px;
+      margin: 26px auto 0;
+      display: grid;
+      gap: 10px
+    }
+
+    .song {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 18px;
+      border-radius: 18px
+    }
+
+    .song b {
+      font-weight: 600
+    }
+
+    .song span {
+      color: var(--muted);
+      font-size: 14px
+    }
+
+    input[type=range] {
+      accent-color: var(--blush);
+      max-width: 150px
+    }
+
+    /* ---------- customize ---------- */
+    .cust {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start
+    }
+
+    .cgrp {
+      margin: 14px 0
+    }
+
+    .cgrp>b {
+      display: block;
+      font-size: 13px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px
+    }
+
+    .sw {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .swb {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .35)
+    }
+
+    .swb[aria-pressed=true] {
+      border-color: #fff;
+      box-shadow: 0 0 0 3px var(--purple)
+    }
+
+    /* ---------- last ---------- */
+    .last {
+      background: linear-gradient(180deg, transparent, #120e26 30%);
+      padding-bottom: 120px
+    }
+
+    .stage.night {
+      background: linear-gradient(180deg, #0f0b22, #241a4b 70%, #40285f)
+    }
+
+    /* ---------- editor ---------- */
+    .edfab {
+      background: none;
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 14px
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(440px, 100%);
+      z-index: 120;
+      background: #2a2250;
+      border-left: 1px solid var(--line);
+      padding: calc(env(safe-area-inset-top, 0px) + 16px) max(16px, env(safe-area-inset-right, 0px)) 40px 16px;
+      overflow: auto;
+      transform: translateX(105%);
+      transition: transform .4s;
+      color: var(--fg)
+    }
+
+    .drawer.open {
+      transform: none
+    }
+
+    .drawer h4 {
+      font-size: 24px;
+      margin: 22px 0 8px;
+      font-style: italic
+    }
+
+    .drawer textarea,
+    .drawer input[type=text],
+    .drawer select {
+      background: rgba(255, 255, 255, .1);
+      color: var(--fg);
+      border-color: var(--line)
+    }
+
+    .ed-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: start
+    }
+
+    .ed-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 4px
+    }
+
+    .ed-btns button {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 8px;
+      padding: 2px 9px;
+      font-size: 14px
+    }
+
+    .ed-mem {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 14px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px
+    }
+
+    .ed-h {
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+      transform: translateX(-50%) translateY(20px);
+      background: #fff8ee;
+      color: var(--ink);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 500;
+      opacity: 0;
+      transition: .35s;
+      z-index: 140;
+      pointer-events: none;
+      max-width: calc(100% - 32px);
+      text-align: center
+    }
+
+    .toast.on {
+      opacity: 1;
+      transform: translateX(-50%)
+    }
+
+    footer {
+      padding: 50px 16px calc(env(safe-area-inset-bottom, 0px) + 40px);
+      text-align: center;
+      color: var(--muted);
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: 20px;
+      position: relative;
+      z-index: 1
+    }
+
+    body.calm *,
+    body.calm *::before,
+    body.calm *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      animation-delay: 0s !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .actor .rig-part {
+        animation: none !important
+      }
+    }
+
+    @media (max-width:640px) {
+      .cust {
+        grid-template-columns: 1fr
+      }
+
+      .player {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center
+      }
+
+      .ctrls {
+        justify-content: center
+      }
+
+      .sec {
+        padding-block: 64px
+      }
+
+      .tb {
+        padding: 7px 11px;
+        font-size: 13px
+      }
+    }
+  </style>
+  <div id="sky" aria-hidden="true"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <div class="topbar">
+    <button class="tb" id="snd" aria-pressed="true" title="Sound on or off">🔊 Sound</button>
+    <button class="tb" id="calm" aria-pressed="false" title="Fewer animations">🌿 Calm mode</button>
+  </div>
+
+  <div id="intro" role="dialog" aria-label="A little gift for Sheetal">
+    <div class="intro-inner">
+      <div class="names" id="i-names"><span>Rohan 💙</span><span>Sheetal 💗</span></div>
+      <div class="stage intro-stage" id="st-intro" data-deco="none">
+        <div class="gift" id="gift">
+          <div class="glow"></div>
+          <div class="box"><i class="rib"></i><i class="rib2"></i></div>
+          <div class="lid"><i class="rib"></i>
+            <div class="bow"><b></b><b></b><s></s></div>
+          </div>
+        </div>
+      </div>
+      <p class="intro-line" id="i-l1">Someone has made a little universe just for you...</p>
+      <p class="intro-line serif" id="i-l2">A tiny gift for my favourite human. 💗</p>
+      <button class="btn glow" id="i-open">OPEN YOUR LITTLE WORLD 🎁</button>
+      <div id="i-reveal" hidden style="width:100%;display:flex;flex-direction:column;align-items:center;gap:16px">
+        <div class="ic" id="i-msg" aria-live="polite"></div>
+        <button class="btn glow" id="i-enter" hidden>ENTER OUR LITTLE UNIVERSE 🌎</button>
+      </div>
+      <button class="btn ghost" id="i-skip">Skip animation</button>
+    </div>
+  </div>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="wrap center">
+        <p class="eyebrow">Rohan 💙 Sheetal</p>
+        <h1 class="big">Our Little Universe</h1>
+        <p class="sub">Two different humans. One ridiculously special friendship. 💗</p>
+        <div class="stage big" id="st-hero" data-deco="hero" role="img"
+          aria-label="Rohan and Sheetal standing together under the stars"></div>
+        <div class="tags"><span class="ntag r">ROHAN 💙</span><span class="ntag s">SHEETAL 💗</span></div>
+        <div class="meter">
+          <div class="lab">BEST FRIENDSHIP ENERGY: <span id="pct">0</span>% ✨</div>
+          <div class="bar"><i id="barfill"></i></div>
+        </div>
+        <nav class="menu" aria-label="Sections">
+          <button class="btn" data-go="#notes">💌 A Letter for You</button>
+          <button class="btn" data-go="#sorry">🥹 I'm Sorry</button>
+          <button class="btn" data-go="#laugh">😂 Make Us Laugh</button>
+          <button class="btn" data-go="#hug">🫂 Send a Hug</button>
+          <button class="btn" data-go="#memories">📸 Our Memory Wall</button>
+          <button class="btn" data-go="#games">🎮 Let's Play</button>
+          <button class="btn" data-go="#music">🎵 Our Little Soundtrack</button>
+          <button class="btn" data-go="#last">🌙 One Last Thing...</button>
+        </nav>
+      </div>
+    </section>
+
+    <section id="faces" class="sec">
+      <div class="wrap center">
+        <p class="eyebrow">The Emotion Engine</p>
+        <h2>If Our Friendship Had Faces...</h2>
+        <p class="lead">Pick a feeling and watch the two of them live it. Tap either of them for a surprise.</p>
+        <div class="stage" id="st-emo" data-deco="sky"></div>
+        <p class="msg" id="emo-msg" aria-live="polite"></p>
+        <div class="row" id="emo-extra"></div>
+        <div class="chips" id="emo-chips"></div>
+        <button class="btn ghost" id="emo-reset">↺ Back to happy</button>
+      </div>
+    </section>
+
+    <section id="us" class="sec">
+      <div class="wrap">
+        <div class="center">
+          <p class="eyebrow">Make us look like us</p>
+          <h2>Dress Up the Friends</h2>
+          <p class="lead">These two are placeholders until they look like the real you. Change anything, or upload your
+            own Bitmoji.</p>
+        </div>
+        <div class="cust">
+          <div class="stage" id="st-us" data-deco="sky" style="--w:clamp(90px,18vw,140px)"></div>
+          <div class="card">
+            <div class="row" id="c-tabs" style="justify-content:flex-start"></div>
+            <div id="c-body"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sorry" class="sec sec-sorry">
+      <div class="wrap center">
+        <p class="eyebrow">A quiet section</p>
+        <h2>I'm Sorry</h2>
+        <p class="lead">Take your time here. Nothing in this section asks you for anything.</p>
+        <div class="row" style="margin-bottom:16px"><button class="btn ghost" id="so-music" aria-pressed="false">🎵 Play
+            soft music (optional)</button></div>
+        <div class="stage" id="st-sorry" data-deco="sorry"></div>
+        <div class="so-body" id="so-body" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="memories" class="sec">
+      <div class="wrap">
+        <div class="center">
+          <p class="eyebrow">Memory wall</p>
+          <h2>Little Moments, Big Memories</h2>
+        </div>
+        <div class="wall" id="wall"></div>
+        <p class="wallcap" id="wallcap"></p>
+      </div>
+    </section>
+
+    <section id="hug" class="sec">
+      <div class="wrap center">
+        <p class="eyebrow">A little bit of comfort</p>
+        <h2>Send a Hug</h2>
+        <p class="lead">Press the button. They'll take it from there.</p>
+        <div class="stage" id="st-hug" data-deco="sky"></div>
+        <p class="msg" id="hug-msg" aria-live="polite">Ready when you are. 🫂</p>
+        <div class="bigact"><button class="btn glow" id="hug-btn">SEND A VIRTUAL HUG 🫂</button><button
+            class="btn ghost" id="hug-more" hidden>ONE MORE HUG, PLEASE 🥹</button></div>
+      </div>
+    </section>
+
+    <section id="laugh" class="sec">
+      <div class="wrap center">
+        <p class="eyebrow">Bestie department</p>
+        <h2>Emergency Bestie Entertainment Department</h2>
+        <p class="lead">Rohan is on duty. Sheetal is the judge.</p>
+        <div class="stage" id="st-laugh" data-deco="sky"></div>
+        <p class="msg" id="laugh-msg" aria-live="polite">Press a button to begin the entertainment.</p>
+        <div class="chips">
+          <button class="chip" data-l="joke">😂 Tell Me a Joke</button>
+          <button class="chip" data-l="dance">🕺 Make Rohan Dance</button>
+          <button class="chip" data-l="chaos">🤪 Activate Chaos Mode</button>
+          <button class="chip" data-l="angry">😤 Make Sheetal Pretend to Be Angry</button>
+          <button class="chip" data-l="drama">🥹 Make Both of Us Dramatic</button>
+          <button class="chip" data-l="random">🎲 Random Bestie Moment</button>
+          <button class="chip" data-l="hat">🎩 Change Rohan's Outfit</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="games" class="sec">
+      <div class="wrap">
+        <div class="center">
+          <p class="eyebrow">Let's play</p>
+          <h2>Friendship Mini-Games</h2>
+        </div>
+        <div class="tabs" role="tablist" style="margin-top:24px">
+          <button class="chip" role="tab" data-g="quiz" aria-pressed="true">💬 Who knows us best?</button>
+          <button class="chip" role="tab" data-g="hearts" aria-pressed="false">💗 Catch the hearts</button>
+          <button class="chip" role="tab" data-g="stars" aria-pressed="false">✨ Our constellation</button>
+        </div>
+        <div class="gpanel" id="g-quiz"></div>
+        <div class="gpanel" id="g-hearts" hidden></div>
+        <div class="gpanel" id="g-stars" hidden></div>
+      </div>
+    </section>
+
+    <section id="notes" class="sec">
+      <div class="wrap center">
+        <p class="eyebrow">A letter for you</p>
+        <h2>A Few Things I Appreciate About You, Sheetal</h2>
+        <p class="lead">Here is one for today. Tap an envelope for another.</p>
+        <div class="today" id="today"></div>
+        <div class="envs" id="envs"></div>
+      </div>
+    </section>
+
+    <section id="music" class="sec">
+      <div class="wrap center">
+        <p class="eyebrow">Our little soundtrack</p>
+        <h2>The Music Corner</h2>
+        <p class="lead">Three tiny tunes made just for this page. Press play and stay a while.</p>
+        <div class="card player" id="player">
+          <div class="disc" aria-hidden="true"></div>
+          <div style="min-width:0;width:100%">
+            <div class="pl-t" id="pl-t">Moonlit Walk</div>
+            <div class="small" id="pl-s">Press play</div>
+            <div class="ctrls">
+              <button class="btn ghost round" id="pl-prev" aria-label="Previous tune">⏮</button>
+              <button class="btn round" id="pl-play" aria-label="Play">▶</button>
+              <button class="btn ghost round" id="pl-next" aria-label="Next tune">⏭</button>
+              <label class="small" style="display:flex;align-items:center;gap:8px">🔈 <input type="range" id="pl-vol"
+                  min="0" max="100" value="70" aria-label="Volume"></label>
+            </div>
+            <canvas id="viz" width="400" height="56" aria-hidden="true"></canvas>
+          </div>
+        </div>
+        <h3 style="margin-top:44px">Songs that sound like us</h3>
+        <div class="songs" id="songs"></div>
+      </div>
+    </section>
+
+    <section id="last" class="sec last">
+      <div class="wrap center">
+        <p class="eyebrow">One last thing</p>
+        <h2>When the Sky Gets Quiet</h2>
+        <div class="row" style="margin-top:26px"><button class="btn glow" id="last-open">🌙 Look up</button></div>
+        <div id="last-sky" hidden style="margin-top:28px">
+          <div class="stage night" id="st-last" data-deco="night"></div>
+          <div class="letter" id="last-msg" style="margin-top:24px"></div>
+          <p class="msg" id="last-sign" style="min-height:0"></p>
+          <button class="btn ghost" data-go="#home">↑ Back to the beginning</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Made with love, from Rohan to Sheetal. 💙✨<br><button class="edfab" id="ed-open" style="margin-top:18px">✏️
+      Rohan's editor</button></footer>
+
+  <aside class="drawer" id="drawer" aria-label="Rohan's editor"></aside>
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+    /* ============================================================
+       EDIT ME: everything personal lives in CONFIG.
+       Rohan can change any text below, or use the in-page editor
+       (footer, "Rohan's editor"). Photos are added in the editor.
+       ============================================================ */
+    const CONFIG = {
+      welcome: "Hey Sheetal! 🥹💗\n\nYou know, some people enter our lives and somehow make ordinary days feel a little more special.\n\nThis little website is something I made just for you, to celebrate our friendship, our silly moments, our random conversations, our laughter, our misunderstandings, and all the little things that make our bond ours.\n\nSo, welcome to our tiny universe.\n\nMade with love, from Rohan to Sheetal. 💙✨",
+      apology: "Hey Sheetal... 🥺💗\n\nI don't want to pretend that I always get everything right.\n\nSometimes I might say the wrong thing, misunderstand something, or fail to express what I really mean.\n\nIf I've hurt you, upset you, or made you feel unimportant, I'm genuinely sorry.\n\nYou deserve to have your feelings heard and respected.\n\nI never want a misunderstanding to stop us from talking honestly.\n\nI'm not asking you to forget anything or pretend everything is okay immediately.\n\nI just want you to know that our friendship matters to me, and I'm willing to listen, understand, and do better.\n\nWhenever you're ready, I'd like us to talk.\n\n— Rohan 💙",
+      wallCaption: "Not every memory needs a perfect picture; some are better kept in the heart. ❤️✨And those empty frames above? 😂 Let’s just say we’re leaving a little space for future memories… if destiny, the universe, and our friendship all agree! 🙏😄No pressure, no expectations — just good vibes, great friendship, and memories waiting to happen. 🤝💫",
+      notes: [
+        "Thank you for being part of my life. 💗",
+        "Thank you for the laughter and random conversations. 😂",
+        "Thank you for the moments when we can simply be ourselves. 🤍",
+        "I appreciate the little things that make our friendship unique. ✨",
+        "I hope you always know that your feelings matter. 🫶",
+        "I'm grateful for the memories we've made and the ones still ahead. 🌷",
+        "You deserve kindness, happiness, and people who listen to you. 💕",
+        "Even an ordinary day can become a good memory with the right people. 🌈"
+      ],
+      /* Memories: add a photo, date and caption in the editor. Until then each card shows an illustration. */
+      memories: [
+        { title: "Our First Conversation 💬", emoji: "💬", date: "", caption: "", photo: "" },
+        { title: "The Day We Couldn't Stop Laughing 😂", emoji: "😂", date: "", caption: "", photo: "" },
+        { title: "Our Randomest Conversations 🌙", emoji: "🌙", date: "", caption: "", photo: "" },
+        { title: "The Moments We Felt Proud of Each Other 🥹", emoji: "🥹", date: "", caption: "", photo: "" },
+        { title: "Our Silly Arguments 😤", emoji: "😤", date: "", caption: "", photo: "" },
+        { title: "The Times We Made Up 🤍", emoji: "🤍", date: "", caption: "", photo: "" },
+        { title: "The Memories Still Waiting to Happen ✨", emoji: "✨", date: "", caption: "", photo: "" }
+      ],
+      /* Quiz: a = "rohan" | "sheetal" | null (null = no right answer set yet, just for fun). */
+      quiz: [
+        { q: "Who is more likely to send a random message at midnight?", a: null },
+        { q: "Who starts laughing at the worst possible moment?", a: null },
+        { q: "Who is more dramatic during a silly argument?", a: null },
+        { q: "Who is more likely to say, \"I'm not angry,\" while clearly looking angry?", a: null },
+        { q: "Who would suggest a completely random plan?", a: null }
+      ],
+      songs: [
+        { t: "A song for us (Rohan, add one)", a: "Artist", n: "A song that reminds me of this friendship." },
+        { t: "The one we both know the words to", a: "Artist", n: "Add the story behind it." },
+        { t: "The song for a long ride home", a: "Artist", n: "Placeholder until Rohan picks." }
+      ],
+      final: "Sheetal,\n\nIf you made it all the way here, thank you for letting me share this tiny universe with you.\n\nI'm not perfect, but I'm trying to be a friend who listens, who shows up, and who says sorry when it matters.\n\nThank you for the laughs, the random talks, and for being someone I can simply be myself around.\n\nWhatever happens next, I'm grateful you're in my story.\n\n— Rohan 💙",
+      /* Look: placeholders until the real details are set (skin 0-5, hairc 0-7, topc 0-6). */
+      avatars: {
+        rohan: { skin: 1, hair: "messy", hairc: 1, top: "hoodie", topc: 2, acc: "none" },
+        sheetal: { skin: 1, hair: "long", hairc: 0, top: "dress", topc: 1, acc: "bow" }
+      }
+    };
+
+    (function () {
+      'use strict';
+      const $ = (s, r = document) => r.querySelector(s);
+      const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+      const sleep = ms => new Promise(r => setTimeout(r, ms));
+      const rand = a => a[Math.floor(Math.random() * a.length)];
+      const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const store = {
+        get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+        set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
+      };
+      const clone = o => JSON.parse(JSON.stringify(o));
+
+      /* ---------- state ---------- */
+      const S = clone(CONFIG);
+      (function loadSaved() {
+        const sv = store.get('ro_content', null);
+        if (sv) ['welcome', 'apology', 'wallCaption', 'notes', 'memories', 'quiz', 'songs', 'final'].forEach(k => { if (sv[k] != null) S[k] = sv[k]; });
+      })();
+      const AV = clone(CONFIG.avatars);
+      (function () { const sv = store.get('ro_avatars', null); if (sv) ['rohan', 'sheetal'].forEach(w => { if (sv[w]) Object.assign(AV[w], sv[w]); }); })();
+
+      const IMG = store.get('ro_avimg', {}) || {};
+
+      // Upload each full-body avatar using the in-page editor. The renderer below
+      // builds animated layers from that image so limbs can move independently.
+
+      let calm = store.get('ro_calm', null);
+      if (calm === null) calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+      let sound = store.get('ro_sound', true);
+      function persist() { store.set('ro_content', { welcome: S.welcome, apology: S.apology, wallCaption: S.wallCaption, notes: S.notes, memories: S.memories, quiz: S.quiz, songs: S.songs, final: S.final }) || toast('This browser is full, so the last change was not kept.'); }
+      let toastT;
+      function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600); }
+
+      /* ---------- audio ---------- */
+      let AC = null, master = null, analyser = null;
+      function ac() {
+        if (!AC) {
+          const C = window.AudioContext || window.webkitAudioContext; if (!C) return null;
+          AC = new C(); master = AC.createGain(); master.gain.value = sound ? 0.8 : 0;
+          analyser = AC.createAnalyser(); analyser.fftSize = 64; master.connect(analyser); analyser.connect(AC.destination);
+        }
+        if (AC.state === 'suspended') AC.resume();
+        return AC;
+      }
+      function tone(m, t, d, v, type) {
+        const c = AC; const o = c.createOscillator(), g = c.createGain();
+        o.type = type || 'sine'; o.frequency.value = 440 * Math.pow(2, (m - 69) / 12);
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+        o.connect(g); g.connect(master); o.start(t); o.stop(t + d + 0.05);
+      }
+      function blip(f, d, type, v, delay) {
+        if (!sound) return; const c = ac(); if (!c) return;
+        const o = c.createOscillator(), g = c.createGain(); o.type = type || 'sine'; o.frequency.value = f;
+        const t = c.currentTime + (delay || 0); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v || 0.12, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+        o.connect(g); g.connect(master); o.start(t); o.stop(t + d + 0.05);
+      }
+      const sfx = {
+        pop: () => blip(520, .1, 'triangle', .12),
+        heart: () => { blip(784, .12, 'sine', .12); blip(1175, .16, 'sine', .09, .07); },
+        chime: () => [523, 659, 784, 1047].forEach((f, i) => blip(f, .5, 'sine', .09, i * .09)),
+        tada: () => [523, 659, 784, 1047, 1319].forEach((f, i) => blip(f, .6, 'triangle', .08, i * .07)),
+        oops: () => blip(240, .22, 'triangle', .08)
+      };
+      const TRACKS = [
+        { name: 'Moonlit Walk', sub: 'Slow and dreamy', bpm: 78, chords: [[57, 60, 64, 67], [53, 57, 60, 64], [48, 52, 55, 59], [55, 59, 62, 65]] },
+        { name: 'Tiny Orbit', sub: 'A little bounce', bpm: 98, chords: [[60, 64, 67, 71], [57, 60, 64, 67], [53, 57, 60, 64], [55, 59, 62, 67]] },
+        { name: 'Soft Morning', sub: 'Quiet and warm', bpm: 66, chords: [[62, 65, 69, 72], [58, 62, 65, 69], [55, 58, 62, 65], [57, 60, 64, 67]] }
+      ];
+      const mus = { i: 0, on: false, timer: null, step: 0, next: 0 };
+      function musTick() {
+        if (!mus.on || !AC) return; const tr = TRACKS[mus.i], spb = 60 / tr.bpm / 2;
+        while (mus.next < AC.currentTime + 0.35) {
+          const bar = Math.floor(mus.step / 8) % tr.chords.length, ch = tr.chords[bar], s = mus.step % 8;
+          tone(ch[[0, 1, 2, 3, 2, 1, 3, 2][s]] + 12, mus.next, spb * 2.4, .07, 'sine');
+          if (s === 0) { tone(ch[0] - 12, mus.next, spb * 7, .1, 'triangle'); tone(ch[2], mus.next, spb * 7, .035, 'sine'); }
+          mus.next += spb; mus.step++;
+        }
+      }
+      function musPlay(i) {
+        const c = ac(); if (!c) { toast('Sound is not available in this browser.'); return; }
+        if (i != null && i !== mus.i) { mus.i = i; mus.step = 0; }
+        mus.on = true; mus.next = c.currentTime + 0.1; clearInterval(mus.timer); mus.timer = setInterval(musTick, 120); musTick(); musUI();
+      }
+      function musPause() { mus.on = false; clearInterval(mus.timer); musUI(); }
+      function musUI() {
+        const tr = TRACKS[mus.i]; $('#pl-t').textContent = tr.name; $('#pl-s').textContent = mus.on ? 'Now playing · ' + tr.sub : tr.sub;
+        $('#pl-play').textContent = mus.on ? '⏸' : '▶'; $('#pl-play').setAttribute('aria-label', mus.on ? 'Pause' : 'Play');
+        $('#player').classList.toggle('on', mus.on);
+        const sm = $('#so-music'); if (sm) { const on = mus.on && mus.i === 2; sm.setAttribute('aria-pressed', on); sm.textContent = on ? '⏸ Pause the music' : '🎵 Play soft music (optional)'; }
+      }
+
+      /* ---------- particles ---------- */
+      const cv = $('#fx'), cx = cv.getContext('2d'); let P = [], raf = 0;
+      function sizeFx() { const d = Math.min(window.devicePixelRatio || 1, 2); cv.width = innerWidth * d; cv.height = innerHeight * d; cx.setTransform(d, 0, 0, d, 0, 0); }
+      sizeFx(); addEventListener('resize', sizeFx);
+      const COLS = ['#FFB7D5', '#C8B6FF', '#A7D8FF', '#FFF8EE', '#9275E8', '#ffd45e'];
+      function burst(x, y, kind, n) {
+        if (calm) return; kind = kind || 'hearts'; n = n || 24;
+        for (let i = 0; i < n; i++) {
+          const a = Math.random() * Math.PI * 2, sp = 2 + Math.random() * 6;
+          P.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 3, g: .12, r: 6 + Math.random() * 8, rot: Math.random() * 6, vr: (Math.random() - .5) * .3, life: 0, max: 70 + Math.random() * 50, kind, c: rand(COLS) });
+        }
+        if (!raf) raf = requestAnimationFrame(loopFx);
+      }
+      function rain(kind, n) {
+        if (calm) return;
+        for (let i = 0; i < n; i++) P.push({ x: Math.random() * innerWidth, y: -20 - Math.random() * 200, vx: (Math.random() - .5) * 1.5, vy: 1.5 + Math.random() * 2, g: .01, r: 7 + Math.random() * 8, rot: Math.random() * 6, vr: (Math.random() - .5) * .1, life: 0, max: 220 + Math.random() * 80, kind, c: rand(COLS) });
+        if (!raf) raf = requestAnimationFrame(loopFx);
+      }
+      function burstAt(el, kind, n) { const r = el.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height * .45, kind, n); }
+      function heartP(x, y, s) { cx.beginPath(); cx.moveTo(x, y + s * .35); cx.bezierCurveTo(x - s, y - s * .2, x - s * .6, y - s, x, y - s * .4); cx.bezierCurveTo(x + s * .6, y - s, x + s, y - s * .2, x, y + s * .35); cx.fill(); }
+      function starP(x, y, s, pts) { cx.beginPath(); for (let i = 0; i < pts * 2; i++) { const r = i % 2 ? s * .45 : s, a = i * Math.PI / pts - Math.PI / 2; cx[i ? 'lineTo' : 'moveTo'](x + Math.cos(a) * r, y + Math.sin(a) * r); } cx.closePath(); cx.fill(); }
+      function loopFx() {
+        cx.clearRect(0, 0, innerWidth, innerHeight);
+        P = P.filter(p => p.life < p.max);
+        for (const p of P) {
+          p.life++; p.vy += p.g; p.x += p.vx; p.y += p.vy; p.vx *= .99; p.rot += p.vr;
+          const k = p.life / p.max; cx.globalAlpha = k > .7 ? Math.max(0, 1 - (k - .7) / .3) : 1; cx.fillStyle = p.c;
+          cx.save(); cx.translate(p.x, p.y); cx.rotate(p.kind === 'hearts' ? 0 : p.rot);
+          if (p.kind === 'hearts') heartP(0, 0, p.r);
+          else if (p.kind === 'stars') starP(0, 0, p.r, 5);
+          else if (p.kind === 'sparkle') starP(0, 0, p.r, 4);
+          else if (p.kind === 'petals') { cx.beginPath(); cx.ellipse(0, 0, p.r * .5, p.r, 0, 0, 7); cx.fill(); }
+          else cx.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2);
+          cx.restore();
+        }
+        cx.globalAlpha = 1;
+        raf = P.length ? requestAnimationFrame(loopFx) : 0;
+        if (!P.length) cx.clearRect(0, 0, innerWidth, innerHeight);
+      }
+      function floatUp(host, txt, n, o) {
+        if (calm || !host) return; o = o || {}; const layer = host.querySelector('.fxl') || host; const arr = Array.isArray(txt) ? txt : [txt];
+        for (let i = 0; i < (n || 6); i++) {
+          const s = document.createElement('span'); s.className = 'fl'; s.textContent = rand(arr);
+          s.style.left = ((o.x0 != null ? o.x0 : 12) + Math.random() * (o.w != null ? o.w : 76)) + '%'; s.style.bottom = (o.y != null ? o.y : 28) + '%';
+          s.style.setProperty('--dx', (Math.random() * 70 - 35) + 'px'); s.style.fontSize = (16 + Math.random() * 16) + 'px';
+          const d = i * 130 + Math.random() * 250; s.style.animationDelay = d + 'ms'; layer.appendChild(s); setTimeout(() => s.remove(), 3300 + d);
+        }
+      }
+
+      /* ---------- typewriter ---------- */
+      const typers = new WeakMap();
+      async function typeText(el, text, speed) {
+        const id = {}; typers.set(el, id); el.classList.add('typing'); el.textContent = '';
+        if (calm) { el.textContent = text; el.classList.remove('typing'); return true; }
+        for (let i = 0; i < text.length; i++) {
+          if (typers.get(el) !== id) return false;
+          el.textContent = text.slice(0, i + 1); const ch = text[i];
+          await sleep(/[.!?…]/.test(ch) ? speed * 8 : /[,—\n]/.test(ch) ? speed * 3.5 : speed);
+        }
+        if (typers.get(el) === id) el.classList.remove('typing');
+        return typers.get(el) === id;
+      }
+      function finishType(el, text) { typers.set(el, {}); el.textContent = text; el.classList.remove('typing'); }
+
+      /* ============================================================
+         AVATARS: original Bitmoji-style cartoon friends in SVG
+         ============================================================ */
+      const SKINS = ['#FFE0C7', '#F5C9A3', '#E3AE82', '#C98E62', '#9C6A45', '#6B4630'];
+      const HAIRC = ['#2b1d1a', '#5a3a2a', '#8a5a3a', '#c9a064', '#d9534f', '#7a5af8', '#ff8fb8', '#e9e6f2'];
+      const TOPC = ['#9275E8', '#FFB7D5', '#A7D8FF', '#FFD6A5', '#ffffff', '#3b3566', '#8fd9b6'];
+      const HAIRS = ['short', 'messy', 'buzz', 'bob', 'long', 'ponytail', 'bun', 'curly'];
+      const TOPS = ['tee', 'hoodie', 'dress'];
+      const ACCS = ['none', 'glasses', 'bow', 'headphones', 'hat', 'crown', 'flowerclip'];
+      function hairBack(s, c) {
+        if (s === 'long') return `<path d="M24 64 Q18 112 34 130 L86 130 Q102 112 96 64 Q98 24 60 22 Q22 24 24 64Z" fill="${c}"/>`;
+        if (s === 'bob') return `<path d="M25 64 Q20 102 38 104 L82 104 Q100 102 95 64 Q98 24 60 22 Q22 24 25 64Z" fill="${c}"/>`;
+        if (s === 'ponytail') return `<path d="M88 40 Q120 42 112 98 Q106 74 92 66Z" fill="${c}"/>`;
+        if (s === 'bun') return `<circle cx="60" cy="20" r="13" fill="${c}"/>`;
+        if (s === 'curly') return [[30, 48], [36, 34], [50, 27], [70, 27], [84, 34], [90, 48], [27, 64], [93, 64]].map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="11" fill="${c}"/>`).join('');
+        return '';
+      }
+      function hairFront(s, c) {
+        const short = `<path d="M28 62 Q24 26 60 25 Q96 26 92 62 Q88 44 74 41 Q60 36 46 41 Q32 44 28 62Z" fill="${c}"/>`;
+        if (s === 'messy') return `<path d="M27 62 Q22 34 44 28 L47 18 L54 28 L62 16 L68 28 L78 20 L80 30 Q98 36 93 62 Q88 44 72 42 Q60 38 46 42 Q32 46 27 62Z" fill="${c}"/>`;
+        if (s === 'buzz') return `<path d="M30 56 Q30 30 60 29 Q90 30 90 56 Q84 40 60 38 Q36 40 30 56Z" fill="${c}"/>`;
+        if (s === 'bob') return `<path d="M27 62 Q28 28 60 26 Q92 28 93 62 Q82 40 60 43 Q38 40 27 62Z" fill="${c}"/>`;
+        if (s === 'long') return `<path d="M27 62 Q26 30 60 27 Q94 30 93 62 Q86 42 64 40 Q44 44 38 56 Q34 60 27 62Z" fill="${c}"/>`;
+        if (s === 'curly') return `<path d="M31 54 Q60 30 89 54 Q76 42 60 42 Q44 42 31 54Z" fill="${c}"/>`;
+        return short;
+      }
+      const ACCSVG = {
+        glasses: `<g fill="none" stroke="#2a1f3d" stroke-width="2.2"><circle cx="48" cy="62" r="10"/><circle cx="72" cy="62" r="10"/><path d="M58 62h4"/></g>`,
+        bigglasses: `<g fill="rgba(255,255,255,.25)" stroke="#ff6fa5" stroke-width="3.4"><circle cx="46" cy="62" r="14"/><circle cx="74" cy="62" r="14"/><path d="M60 62h0"/></g>`,
+        crown: `<path d="M40 38 L43 16 L52 28 L60 12 L68 28 L77 16 L80 38Z" fill="#ffd45e" stroke="#e8a92c" stroke-width="2" stroke-linejoin="round"/><circle cx="60" cy="19" r="2.5" fill="#ff7eb0"/>`,
+        hat: `<path d="M27 46 Q28 14 60 12 Q92 14 93 46 Q60 38 27 46Z" fill="#A7D8FF"/><rect x="25" y="42" width="70" height="9" rx="4.5" fill="#8cc3f0"/><circle cx="60" cy="10" r="6" fill="#fff"/>`,
+        partyhat: `<path d="M44 36 L60 -6 L76 36Z" fill="#C8B6FF"/><path d="M50 22 L70 22 M47 30 L73 30" stroke="#fff" stroke-width="3"/><circle cx="60" cy="-6" r="5" fill="#FFB7D5"/>`,
+        headphones: `<path d="M29 62 Q29 26 60 26 Q91 26 91 62" fill="none" stroke="#2a1f3d" stroke-width="5" stroke-linecap="round"/><rect x="23" y="55" width="11" height="21" rx="5.5" fill="#FFB7D5"/><rect x="86" y="55" width="11" height="21" rx="5.5" fill="#FFB7D5"/>`,
+        bow: `<path d="M84 36 L68 27 L68 45Z M84 36 L100 27 L100 45Z" fill="#FFB7D5"/><circle cx="84" cy="36" r="4.5" fill="#ff8fb8"/>`,
+        flowerclip: `<g transform="translate(84,40)"><circle r="4" cy="-6" fill="#FFB7D5"/><circle r="4" cx="6" cy="-2" fill="#FFB7D5"/><circle r="4" cx="4" cy="5" fill="#FFB7D5"/><circle r="4" cx="-4" cy="5" fill="#FFB7D5"/><circle r="4" cx="-6" cy="-2" fill="#FFB7D5"/><circle r="3.4" fill="#ffd45e"/></g>`
+      };
+      function avSVG(who, accO) {
+        const c = AV[who], skin = SKINS[c.skin] || SKINS[1], hc = HAIRC[c.hairc] || HAIRC[0], tc = TOPC[c.topc] || TOPC[0];
+        const dress = c.top === 'dress';
+        const accs = String(accO ? accO : c.acc).split(',');
+        const legc = dress ? skin : '#4a4a8a';
+        let top = `<rect x="40" y="98" width="40" height="60" rx="16" fill="${tc}"/>`;
+        if (c.top === 'hoodie') top = `<path d="M44 96 Q60 120 76 96 L76 104 Q60 126 44 104Z" fill="rgba(0,0,0,.2)"/>` + top + `<rect x="48" y="132" width="24" height="14" rx="6" fill="rgba(0,0,0,.13)"/><path d="M54 106 L54 118 M66 106 L66 118" stroke="#fff8ee" stroke-width="2" stroke-linecap="round"/>`;
+        else if (c.top === 'tee') top += `<path d="M52 98 Q60 108 68 98" fill="none" stroke="rgba(0,0,0,.2)" stroke-width="3"/>`;
+        else top += `<path d="M40 140 L32 174 Q60 184 88 174 L80 140Z" fill="${tc}"/><path d="M40 140 L80 140" stroke="rgba(0,0,0,.14)" stroke-width="3"/>`;
+        const arm = (x, cls) => `<g class="${cls}"><line x1="${x}" y1="110" x2="${x}" y2="126" stroke="${tc}" stroke-width="12" stroke-linecap="round"/><line x1="${x}" y1="122" x2="${x}" y2="148" stroke="${skin}" stroke-width="9" stroke-linecap="round"/><circle cx="${x}" cy="150" r="5.5" fill="${skin}"/></g>`;
+        const leg = (x, cls) => `<g class="${cls}"><rect x="${x}" y="150" width="12" height="38" rx="6" fill="${legc}"/><ellipse cx="${x + 6}" cy="190" rx="9" ry="5" fill="#fff8ee"/></g>`;
+        const props = `
+  <g class="prop prop-flower"><g transform="translate(110,126)"><path d="M0 14 L0 46" stroke="#6fbf8a" stroke-width="3" stroke-linecap="round"/><path d="M0 32 q-9 -4 -11 -13 q10 0 11 13z" fill="#6fbf8a"/><g class="bloom"><circle cx="0" cy="-1" r="6" fill="#FFB7D5"/><circle cx="7" cy="4" r="6" fill="#FFB7D5"/><circle cx="4" cy="12" r="6" fill="#FFB7D5"/><circle cx="-4" cy="12" r="6" fill="#FFB7D5"/><circle cx="-7" cy="4" r="6" fill="#FFB7D5"/><circle cx="0" cy="6" r="5" fill="#ffd45e"/></g></g></g>
+  <g class="prop prop-letter"><g transform="translate(98,126)"><rect width="28" height="19" rx="2" fill="#fffaf0" stroke="#d8bf94"/><path d="M0 0 L14 11 L28 0" fill="none" stroke="#d8bf94"/><circle cx="14" cy="11" r="3.6" fill="#ff8fb8"/></g></g>
+  <g class="prop prop-cookie"><g transform="translate(110,134)"><circle r="10" fill="#d9a066" stroke="#a9733f" stroke-width="1.6"/><circle cx="-3" cy="-3" r="1.6" fill="#6b3f1f"/><circle cx="3" cy="2" r="1.6" fill="#6b3f1f"/><circle cx="-2" cy="4" r="1.4" fill="#6b3f1f"/></g></g>
+  <g class="prop prop-heart"><path d="M0 7 C-14 -5 -7 -19 0 -10 C7 -19 14 -5 0 7Z" transform="translate(110,128) scale(1.3)" fill="#ff7eb0"/></g>`;
+        return `<svg viewBox="-10 0 140 205" role="img" aria-label="${who === 'rohan' ? 'Rohan' : 'Sheetal'}" style="--brow:${hc}">
+  ${hairBack(c.hair, hc)}
+  ${leg(45, 'legL')}${leg(63, 'legR')}
+  <rect x="54" y="88" width="12" height="16" fill="${skin}"/>
+  ${top}
+  ${arm(36, 'armL')}${arm(84, 'armR')}
+  ${props}
+  <circle cx="28" cy="64" r="6" fill="${skin}"/><circle cx="92" cy="64" r="6" fill="${skin}"/>
+  <circle cx="60" cy="62" r="32" fill="${skin}"/>
+  <circle class="blushc" cx="42" cy="73" r="6"/><circle class="blushc" cx="78" cy="73" r="6"/>
+  <g class="eyes e-open"><g class="blink"><g class="pup"><ellipse cx="48" cy="62" rx="4.6" ry="5.8" fill="#2a1f3d"/><circle cx="49.8" cy="60" r="1.7" fill="#fff"/><ellipse cx="72" cy="62" rx="4.6" ry="5.8" fill="#2a1f3d"/><circle cx="73.8" cy="60" r="1.7" fill="#fff"/></g></g></g>
+  <path class="eyes e-happy" d="M43 64 Q48 56 53 64 M67 64 Q72 56 77 64"/>
+  <path class="eyes e-closed" d="M43 62 Q48 66 53 62 M67 62 Q72 66 77 62"/>
+  <path class="brow bl" d="M42 52 L55 52"/><path class="brow br" d="M65 52 L78 52"/>
+  <path class="mo mo-smile" d="M50 74 Q60 84 70 74"/>
+  <path class="mo mo-soft" d="M54 76 Q60 80.5 66 76"/>
+  <g class="mo mo-grin"><path d="M47 72 Q60 94 73 72Z" fill="#7a2f4a" stroke="#2a1f3d" stroke-width="2.2" stroke-linejoin="round"/><path d="M53 83 Q60 78 67 83 Q60 90 53 83Z" fill="#ff8fa8" stroke="none"/></g>
+  <path class="mo mo-flat" d="M53 78 L67 78"/>
+  <path class="mo mo-frown" d="M52 81 Q60 72 68 81"/>
+  <ellipse class="mo mo-oh" cx="60" cy="79" rx="4.5" ry="5.5"/>
+  <path class="mo mo-smirk" d="M52 77 Q62 84 70 73"/>
+  <g class="mo mo-tongue"><path d="M50 74 Q60 84 70 74"/><ellipse cx="60" cy="83" rx="5" ry="6" fill="#ff8fa8" stroke="#2a1f3d" stroke-width="1.5"/></g>
+  <path class="mo mo-wobble" d="M51 80 Q55.5 75 60 80 T69 80"/>
+  <path class="sweat" d="M92 38 q6 9 0 14 q-6 -5 0 -14z" fill="#A7D8FF" stroke="#6aa6d8"/>
+  <path class="tear" d="M41 70 q3.5 6 0 10 q-3.5 -4 0 -10z" fill="#A7D8FF"/><path class="tear" d="M79 70 q3.5 6 0 10 q-3.5 -4 0 -10z" fill="#A7D8FF"/>
+  ${hairFront(c.hair, hc)}
+  ${accs.map(a => ACCSVG[a] || '').join('')}
+</svg>`;
+      }
+      function renderActor(el) {
+        const who = el.dataset.who, inner = el.querySelector('.inner'); if (!inner) return;
+        if (!IMG[who]) { inner.innerHTML = avSVG(who, el.dataset.acc); return; }
+        const src = String(IMG[who]).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+        // These are clipped views of the uploaded full-body art. Small independent
+        // transforms add idle movement while preserving the site's existing scene controls.
+        inner.innerHTML = `<div class="rig" role="img" aria-label="${who} animated cartoon avatar">
+    <img class="rig-part rig-base" alt="" src="${src}">
+    <img class="rig-part rig-legs" alt="" src="${src}">
+    <img class="rig-part rig-torso" alt="" src="${src}">
+    <img class="rig-part rig-arm-a" alt="" src="${src}">
+    <img class="rig-part rig-arm-b" alt="" src="${src}">
+    <img class="rig-part rig-head" alt="" src="${src}">
+    <img class="rig-part rig-face" alt="" src="${src}">
+  </div>`;
+      }
+      function renderAllActors() { $$('.actor').forEach(renderActor); }
+
+      const MOODS = {
+        happy: { mouth: 'smile', eyes: 'open', brow: 'up', blush: 1, bub: '' },
+        grin: { mouth: 'grin', eyes: 'happy', brow: 'up', blush: 1 },
+        laugh: { mouth: 'grin', eyes: 'happy', brow: 'up', blush: 2, bub: '😂' },
+        annoyed: { mouth: 'flat', eyes: 'open', brow: 'angry', bub: '😤' },
+        nervous: { mouth: 'wobble', eyes: 'wide', brow: 'sad', sweat: 1, bub: '😅' },
+        sad: { mouth: 'frown', eyes: 'open', brow: 'sad', tear: 1, look: 'down', bub: '🥺' },
+        sorry: { mouth: 'soft', eyes: 'open', brow: 'sad', look: 'down' },
+        caring: { mouth: 'soft', eyes: 'open', brow: 'up', blush: 1, bub: '🤍' },
+        soft: { mouth: 'soft', eyes: 'open', brow: 'flat' },
+        excited: { mouth: 'grin', eyes: 'wide', brow: 'up', blush: 1, bub: '🤩' },
+        shy: { mouth: 'soft', eyes: 'open', brow: 'flat', blush: 2, look: 'down', bub: '😊' },
+        proud: { mouth: 'grin', eyes: 'happy', brow: 'up', blush: 1, bub: '🥳' },
+        neutral: { mouth: 'flat', eyes: 'open', brow: 'flat' },
+        thoughtful: { mouth: 'flat', eyes: 'open', brow: 'one', look: 'up', bub: '💭' },
+        surprised: { mouth: 'oh', eyes: 'wide', brow: 'up', bub: '❕' },
+        sleepy: { mouth: 'flat', eyes: 'closed', brow: 'flat', bub: '😴' },
+        silly: { mouth: 'tongue', eyes: 'open', brow: 'one', bub: '🤪' },
+        smirk: { mouth: 'smirk', eyes: 'open', brow: 'one' },
+        dramatic: { mouth: 'wobble', eyes: 'wide', brow: 'sad', tear: 1, bub: '😭' },
+        cozy: { mouth: 'smile', eyes: 'closed', brow: 'flat', blush: 2 }
+      };
+      function act(el, s) {
+        if (!el || !s) return; const d = el.dataset;
+        if (s.mood) {
+          const m = MOODS[s.mood] || MOODS.happy; d.mood = s.mood; d.mouth = m.mouth; d.eyes = m.eyes; d.brow = m.brow; d.blush = m.blush || 0; d.sweat = m.sweat ? 1 : 0; d.tear = m.tear ? 1 : 0; d.look = s.look || m.look || 'front';
+          const b = el.querySelector('.bub'); if (b) b.textContent = s.bub != null ? s.bub : (m.bub || '');
+        } else if (s.look) d.look = s.look;
+        if ('pose' in s) d.pose = s.pose || 'idle';
+        if ('anim' in s) d.anim = s.anim || '';
+        if ('prop' in s) d.prop = s.prop || '';
+        if ('bloom' in s) d.bloom = s.bloom ? 1 : 0;
+        if ('hidden' in s) d.hidden = s.hidden ? 1 : 0;
+        if ('acc' in s) { d.acc = s.acc || ''; renderActor(el); }
+        if ('x' in s) {
+          const cur = parseFloat(d.x);
+          if (cur !== s.x) { d.x = s.x; el.style.setProperty('--x', s.x + '%'); if (!calm) { d.walk = 1; clearTimeout(el._w); el._w = setTimeout(() => { delete d.walk; }, 1450); } }
+        }
+      }
+      const DECO = {};
+      function stars(n) { let h = ''; for (let i = 0; i < n; i++) h += `<i class="st" style="left:${Math.random() * 100}%;top:${Math.random() * 60}%;animation-delay:${(Math.random() * 3).toFixed(2)}s"></i>`; return h; }
+      function flies(n) { let h = ''; for (let i = 0; i < n; i++) h += `<i class="ff" style="left:${10 + Math.random() * 80}%;top:${35 + Math.random() * 40}%;animation-delay:${(Math.random() * 6).toFixed(2)}s"></i>`; return h; }
+      function petals(n) { let h = '<div class="petals">'; for (let i = 0; i < n; i++) h += `<i style="left:${Math.random() * 100}%;animation-delay:${(-Math.random() * 9).toFixed(2)}s;animation-duration:${8 + Math.random() * 6}s"></i>`; return h + '</div>'; }
+      DECO.hero = () => `<i class="moon"></i><i class="planet p1"></i><i class="planet p2"></i><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i>${flies(9)}${stars(18)}<i class="path"></i>`;
+      DECO.sky = () => `${stars(16)}<i class="moon sm"></i><i class="path"></i>`;
+      DECO.sorry = () => `<i class="path"></i>${petals(14)}`;
+      DECO.night = () => `${stars(34)}<i class="moon"></i><i class="path"></i>`;
+      DECO.none = () => '';
+      function buildStage(st) {
+        const deco = st.dataset.deco || 'sky';
+        const actor = w => `<div class="actor" data-who="${w}" data-x="50"><div class="inner"></div><span class="bub"></span><span class="tag">${w === 'rohan' ? 'Rohan' : 'Sheetal'}</span></div>`;
+        const keep = st.innerHTML;
+        st.innerHTML = `<div class="deco">${(DECO[deco] || DECO.sky)()}</div><div class="dotline"></div><div class="world">${actor('rohan')}${actor('sheetal')}<div class="infin">∞</div></div><div class="fxl"></div>` + keep;
+        $$('.actor', st).forEach(renderActor);
+        act(R(st), { mood: 'happy', x: 34 }); act(Sh(st), { mood: 'happy', x: 66 });
+      }
+      const R = st => $('.actor[data-who=rohan]', st), Sh = st => $('.actor[data-who=sheetal]', st);
+      function scene(st, o) {
+        if (o.r) act(R(st), o.r); if (o.s) act(Sh(st), o.s);
+        if ('bg' in o) st.dataset.bg = o.bg || ''; if ('link' in o) st.dataset.link = o.link ? 1 : 0;
+        if ('inf' in o) st.dataset.inf = o.inf ? 1 : 0; if ('blanket' in o) st.dataset.blanket = o.blanket ? 1 : 0; if ('zoom' in o) st.dataset.zoom = o.zoom ? 1 : 0;
+        if ('chaos' in o) st.dataset.chaos = o.chaos ? 1 : 0;
+      }
+      function mid(st) { return st; }
+
+      /* ============================================================
+         BOOT
+         ============================================================ */
+      (function () { let h = ''; for (let i = 0; i < 70; i++) h += `<i style="left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${(Math.random() * 3).toFixed(2)}s;opacity:${(.3 + Math.random() * .6).toFixed(2)}"></i>`; $('#sky').innerHTML = h; })();
+      function applyCalm() { document.body.classList.toggle('calm', calm); $('#calm').setAttribute('aria-pressed', String(calm)); }
+      function applySound() { $('#snd').setAttribute('aria-pressed', String(sound)); $('#snd').textContent = sound ? '🔊 Sound' : '🔇 Muted'; setMaster(); }
+      let vol = 0.7;
+      function setMaster() { if (master) master.gain.value = sound ? vol : 0; }
+      $('#calm').addEventListener('click', () => { calm = !calm; store.set('ro_calm', calm); applyCalm(); toast(calm ? 'Calm mode on. Fewer animations.' : 'Animations back on.'); });
+      $('#snd').addEventListener('click', () => { sound = !sound; store.set('ro_sound', sound); ac(); applySound(); if (!sound) musUI(); });
+      applyCalm(); applySound();
+
+      $$('.stage').forEach(buildStage);
+      ['st-intro', 'st-sorry', 'st-hug', 'st-last'].forEach(id => { const s = $('#' + id); if (s) s.dataset.nopoke = 1; });
+
+      document.addEventListener('click', e => {
+        const g = e.target.closest('[data-go]');
+        if (g) { const t = $(g.dataset.go); if (t) t.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' }); sfx.pop(); return; }
+        const a = e.target.closest('.actor');
+        if (a && !a.dataset.poke) { const st = a.closest('.stage'); if (st && !st.dataset.nopoke) poke(a, st); }
+      });
+      function poke(a, st) {
+        const d = a.dataset, snap = { mood: d.mood || 'happy', pose: d.pose || 'idle', anim: d.anim || '', look: d.look || 'front' };
+        d.poke = 1; sfx.pop();
+        act(a, { mood: rand(['happy', 'grin', 'excited', 'smirk', 'silly']), pose: rand(['wave', 'up', 'idle']), anim: 'jump' });
+        floatUp(st, ['💗', '✨', '⭐'], 3, { x0: Math.max(0, parseFloat(d.x) - 10), w: 20 });
+        setTimeout(() => { act(a, { mood: snap.mood, pose: snap.pose, anim: snap.anim, look: snap.look }); delete d.poke; }, 1100);
+      }
+
+      /* ============================================================
+         INTRO: the gift
+         ============================================================ */
+      const intro = $('#intro'), gift = $('#gift'), stI = $('#st-intro');
+      document.body.classList.add('lock');
+      act(R(stI), { hidden: 1, x: 50, mood: 'happy' }); act(Sh(stI), { hidden: 1, x: 50, mood: 'happy' });
+      let opened = false, skipped = false;
+      (function () { let h = '<div class="stars" aria-hidden="true">'; for (let i = 0; i < 40; i++) h += `<i style="left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${(Math.random() * 3).toFixed(2)}s"></i>`; intro.insertAdjacentHTML('afterbegin', h + '</div>'); })();
+      async function openGift() {
+        if (opened) return; opened = true; ac(); $('#i-open').hidden = true;
+        gift.classList.add('shake'); sfx.pop(); await sleep(calm ? 50 : 950); if (skipped) return;
+        gift.classList.remove('shake'); gift.classList.add('untie'); sfx.chime(); await sleep(calm ? 50 : 1000); if (skipped) return;
+        gift.classList.add('open'); burstAt(gift, 'hearts', 40); burstAt(gift, 'stars', 26); sfx.tada(); await sleep(calm ? 50 : 700); if (skipped) return;
+        stI.dataset.tags = 1;
+        act(R(stI), { hidden: 0, x: 16, mood: 'excited', pose: 'up', anim: 'jump' }); act(Sh(stI), { hidden: 0, x: 84, mood: 'excited', pose: 'up', anim: 'jump' });
+        $('#i-l1').hidden = true; $('#i-l2').hidden = true; $('#i-reveal').hidden = false;
+        await sleep(calm ? 50 : 1500); if (skipped) return;
+        act(R(stI), { mood: 'happy', pose: 'wave', anim: 'bounce' }); act(Sh(stI), { mood: 'happy', pose: 'idle', anim: 'bounce' });
+        await typeText($('#i-msg'), S.welcome, 24); if (skipped) return;
+        act(R(stI), { pose: 'idle', anim: '' }); act(Sh(stI), { anim: '' }); $('#i-enter').hidden = false;
+      }
+      function skipIntro() {
+        skipped = true; opened = true; $('#i-open').hidden = true; gift.classList.remove('shake'); gift.classList.add('untie', 'open'); stI.dataset.tags = 1;
+        act(R(stI), { hidden: 0, x: 16, mood: 'happy', pose: 'idle', anim: '' }); act(Sh(stI), { hidden: 0, x: 84, mood: 'happy', pose: 'idle', anim: '' });
+        $('#i-l1').hidden = true; $('#i-l2').hidden = true; $('#i-reveal').hidden = false; finishType($('#i-msg'), S.welcome); $('#i-enter').hidden = false; $('#i-skip').hidden = true;
+      }
+      async function enterWorld() {
+        ac(); sfx.chime(); intro.classList.add('leaving'); burst(innerWidth / 2, innerHeight / 2, 'sparkle', 50); burst(innerWidth / 2, innerHeight / 2, 'hearts', 30);
+        await sleep(calm ? 50 : 1150); intro.remove(); document.body.classList.remove('lock'); window.scrollTo(0, 0); heroStart();
+      }
+      $('#i-open').addEventListener('click', openGift); $('#i-skip').addEventListener('click', skipIntro); $('#i-enter').addEventListener('click', enterWorld);
+
+      /* ============================================================
+         HERO
+         ============================================================ */
+      const stH = $('#st-hero');
+      const HB = { r: { x: 36, mood: 'happy', pose: 'idle', look: 'right', anim: '' }, s: { x: 64, mood: 'happy', pose: 'idle', look: 'left', anim: '' } };
+      const heroBase = () => scene(stH, HB); heroBase();
+      let heroVis = false; new IntersectionObserver(e => { heroVis = e[0].isIntersecting; }, { threshold: .3 }).observe(stH);
+      function heroStart() {
+        $('#barfill').style.width = '100%';
+        const el = $('#pct'); if (calm) { el.textContent = '1000'; return; }
+        const t0 = performance.now();
+        (function tick(t) { const k = Math.min(1, (t - t0) / 2600); el.textContent = Math.round(1000 * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); })(t0);
+        setTimeout(() => { act(R(stH), { pose: 'wave' }); act(Sh(stH), { pose: 'wave' }); floatUp(stH, ['💗', '✨', '⭐'], 8); setTimeout(heroBase, 2200); }, 600);
+      }
+      const IDLE = [
+        () => ({ r: { pose: 'wave', mood: 'grin', look: 'front' }, s: { mood: 'happy', look: 'left' } }),
+        () => ({ s: { pose: 'wave', mood: 'grin', look: 'front' }, r: { mood: 'happy', look: 'right' } }),
+        () => ({ r: { mood: 'laugh', anim: 'laugh' }, s: { mood: 'laugh', anim: 'laugh' }, fx: ['😂', '✨'] }),
+        () => ({ r: { mood: 'excited', anim: 'jump', pose: 'up' }, s: { mood: 'excited', anim: 'jump', pose: 'up' }, fx: ['💗', '⭐'] }),
+        () => ({ r: { mood: 'shy', look: 'right' }, s: { mood: 'smirk', look: 'left' } }),
+        () => ({ r: { pose: 'dancep', anim: 'dance', mood: 'silly' }, s: { mood: 'laugh', anim: 'bounce' }, fx: ['🎵', '🎶'] })
+      ];
+      (async function idleLoop() {
+        for (; ;) {
+          await sleep(5200 + Math.random() * 3500);
+          if (calm || !heroVis || document.hidden || intro.isConnected) continue;
+          const o = rand(IDLE)(); scene(stH, o); if (o.fx) floatUp(stH, o.fx, 4); await sleep(2400); heroBase();
+        }
+      })();
+
+      /* ============================================================
+         EMOTION ENGINE
+         ============================================================ */
+      const stE = $('#st-emo'); let emTok = 0, emIdx = -1;
+      const BASEP = { pose: 'idle', anim: '', prop: '', bloom: 0, look: 'front' };
+      const LAUGHS = ["Why are we like this? 😭😂", "Wait, why was that so funny?? 😂", "Stop, I can't breathe. 💀", "This is not even that funny. Why are we crying? 😭"];
+      const EM = [
+        { l: 'Happy 😊', r: { x: 32, mood: 'happy', look: 'right', anim: 'dance' }, s: { x: 68, mood: 'happy', look: 'left', anim: 'dance' }, fx: ['⭐', '💛', '✨', '💗'], msg: () => 'Two humans, one very happy little moment. 😊' },
+        { l: 'Laughing 😂', r: { x: 34, mood: 'laugh', look: 'right', anim: 'laugh' }, s: { x: 66, mood: 'laugh', look: 'left', anim: 'laugh' }, fx: ['😂', '🤣', '✨'], msg: () => rand(LAUGHS) },
+        { l: 'Angry 😤', r: { x: 30, mood: 'nervous', look: 'right', pose: 'shrug' }, s: { x: 68, mood: 'annoyed', look: 'left', pose: 'cross' }, bg: 'warm', fx: ['💢'], msg: () => 'Uh-oh... someone is not impressed. 🥲', extra: 'try' },
+        { l: 'Sad 🥺', r: { x: 10, mood: 'caring', look: 'right' }, s: { x: 70, mood: 'sad', look: 'down' }, bg: 'soft', msg: () => 'Sometimes, even the strongest friendships have quiet days.', then: [1300, { r: { x: 50, mood: 'caring', pose: 'reachR', look: 'right' }, s: { mood: 'sad', look: 'left' } }] },
+        { l: 'Sorry 🥹', r: { x: 34, mood: 'sorry', look: 'right', pose: 'hold', prop: 'flower', bloom: 0 }, s: { x: 66, mood: 'thoughtful', look: 'left' }, msg: () => "Even when I mess up, I never want you to feel that your feelings don't matter.", then: [500, { r: { bloom: 1 } }] },
+        { l: 'Caring 🤍', r: { x: 26, mood: 'caring', look: 'right' }, s: { x: 66, mood: 'sad', look: 'down' }, bg: 'soft', msg: () => "Best friends don't have to fix everything. Sometimes, they just need to be there.", then: [1300, { r: { x: 50, pose: 'reachR' }, s: { mood: 'caring', look: 'left' } }], fx: ['🤍'] },
+        { l: 'Excited 🤩', r: { x: 32, mood: 'excited', pose: 'up', anim: 'jump' }, s: { x: 68, mood: 'excited', pose: 'up', anim: 'jump' }, fx: ['🎉', '⭐', '✨'], conf: 1, msg: () => 'Celebrating, just because. 🤩' },
+        { l: 'Shy 😊', r: { x: 36, mood: 'smirk', look: 'right' }, s: { x: 64, mood: 'shy', pose: 'hands', look: 'down' }, fx: ['🌸'], msg: () => 'Okay, but why is this suddenly awkward?? 😊' },
+        { l: 'Proud 🥳', r: { x: 32, mood: 'proud', pose: 'up', anim: 'dance' }, s: { x: 68, mood: 'proud', pose: 'up', anim: 'dance' }, fx: ['🥳', '⭐', '💗'], conf: 1, msg: () => 'Look at us, proud of each other. 🥳' },
+        { l: 'Missing You 🥹', r: { x: 8, mood: 'caring', look: 'right' }, s: { x: 92, mood: 'caring', look: 'left' }, link: 1, bg: 'soft', msg: () => 'Different moments, different places, still friends.', then: [1300, { r: { pose: 'wave' }, s: { pose: 'wave' } }], fx: ['💗'] },
+        { l: 'Sleepy 😴', r: { x: 44, mood: 'sleepy', anim: 'sleep' }, s: { x: 56, mood: 'sleepy', anim: 'sleep' }, blanket: 1, bg: 'soft', fx: ['💤', 'Z', 'z'], msg: () => 'Shhh... best friends, best naps. 😴' },
+        { l: 'Thankful 🫶', r: { x: 36, mood: 'caring', pose: 'hold', prop: 'heart', look: 'right' }, s: { x: 64, mood: 'happy', pose: 'hands', look: 'left' }, fx: ['💗', '✨'], msg: () => 'Thank you for being part of my story.' },
+        { l: 'Friendship Forever ♾️', r: { x: 40, mood: 'happy', anim: 'sway', look: 'right' }, s: { x: 60, mood: 'happy', anim: 'sway', look: 'left' }, inf: 1, fx: ['💗', '✨'], msg: () => "Whatever life brings, I'll always be grateful for our friendship." }
+      ];
+      function runEmotion(i) {
+        const e = EM[i], t = ++emTok; emIdx = i; sfx.pop();
+        $$('#emo-chips .chip').forEach((c, k) => c.setAttribute('aria-pressed', String(k === i)));
+        scene(stE, { r: Object.assign({}, BASEP, e.r), s: Object.assign({}, BASEP, e.s), bg: e.bg || '', link: !!e.link, inf: !!e.inf, blanket: !!e.blanket });
+        $('#emo-msg').textContent = e.msg(); $('#emo-extra').innerHTML = e.extra ? '<button class="btn" id="emo-try">TRY TO MAKE HER SMILE</button>' : '';
+        if (e.fx) floatUp(stE, e.fx, 8); if (e.conf) { burstAt(stE, 'confetti', 50); sfx.tada(); }
+        if (e.then) setTimeout(() => { if (t === emTok) scene(stE, e.then[1]); }, e.then[0]);
+      }
+      $('#emo-chips').innerHTML = EM.map((e, i) => `<button class="chip em" data-e="${i}" aria-pressed="false">${e.l}</button>`).join('');
+      $('#emo-chips').addEventListener('click', e => { const b = e.target.closest('[data-e]'); if (b) runEmotion(+b.dataset.e); });
+      $('#emo-reset').addEventListener('click', () => { emTok++; $$('#emo-chips .chip').forEach(c => c.setAttribute('aria-pressed', 'false')); scene(stE, { r: Object.assign({}, BASEP, { x: 34, mood: 'happy' }), s: Object.assign({}, BASEP, { x: 66, mood: 'happy' }), bg: '', link: 0, inf: 0, blanket: 0 }); $('#emo-msg').textContent = ''; $('#emo-extra').innerHTML = ''; });
+      $('#emo-extra').addEventListener('click', async e => {
+        if (e.target.id !== 'emo-try') return; const t = ++emTok;
+        scene(stE, { r: { mood: 'silly', pose: 'dancep', anim: 'dance', x: 44 } }); $('#emo-msg').textContent = 'Rohan is doing his silliest dance...'; floatUp(stE, ['🕺', '🎵'], 6); sfx.pop();
+        await sleep(1600); if (t !== emTok) return;
+        scene(stE, { s: { mood: 'smirk', look: 'left' } }); $('#emo-msg').textContent = "She's trying very hard not to smile. 😏"; await sleep(2200); if (t !== emTok) return;
+        scene(stE, { s: { mood: 'grin', pose: 'idle', look: 'left' }, r: { pose: 'idle', anim: '', mood: 'happy' }, bg: '' }); $('#emo-msg').textContent = 'Okay... that was a little funny. 😂'; floatUp(stE, ['😂', '💗'], 6);
+      });
+
+      /* ============================================================
+         DRESS-UP
+         ============================================================ */
+      const stU = $('#st-us'); let cw = 'rohan';
+      scene(stU, { r: { x: 34, mood: 'happy', pose: 'wave' }, s: { x: 66, mood: 'happy' } });
+      function fileToDataURL(f, max, type, q) {
+        return new Promise((res, rej) => {
+          const fr = new FileReader(); fr.onerror = rej;
+          fr.onload = () => { const im = new Image(); im.onerror = rej; im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)); const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL(type, q)); }; im.src = fr.result; };
+          fr.readAsDataURL(f);
+        });
+      }
+      async function copyText(t) {
+        try { await navigator.clipboard.writeText(t); toast('Copied.'); return; } catch (e) { }
+        try { const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); toast('Copied.'); } catch (e) { toast('Select the text and copy it by hand.'); }
+      }
+      function renderCust() {
+        const a = AV[cw];
+        $('#c-tabs').innerHTML = ['rohan', 'sheetal'].map(w => `<button class="chip" data-w="${w}" aria-pressed="${w === cw}">${w === 'rohan' ? 'Rohan 💙' : 'Sheetal 💗'}</button>`).join('');
+        const sw = (k, arr) => arr.map((c, i) => `<button class="swb" data-k="${k}" data-v="${i}" style="background:${c}" aria-pressed="${a[k] === i}" aria-label="${k} option ${i + 1}"></button>`).join('');
+        const ch = (k, arr) => arr.map(v => `<button class="chip" data-k="${k}" data-v="${v}" aria-pressed="${a[k] === v}">${v === 'none' ? 'nothing' : v === 'flowerclip' ? 'flower clip' : v}</button>`).join('');
+        $('#c-body').innerHTML = `
+  <div class="cgrp"><b>Skin tone</b><div class="sw">${sw('skin', SKINS)}</div></div>
+  <div class="cgrp"><b>Hairstyle</b><div class="chips" style="justify-content:flex-start;margin:0">${ch('hair', HAIRS)}</div></div>
+  <div class="cgrp"><b>Hair colour</b><div class="sw">${sw('hairc', HAIRC)}</div></div>
+  <div class="cgrp"><b>Outfit</b><div class="chips" style="justify-content:flex-start;margin:0">${ch('top', TOPS)}</div></div>
+  <div class="cgrp"><b>Outfit colour</b><div class="sw">${sw('topc', TOPC)}</div></div>
+  <div class="cgrp"><b>Accessory</b><div class="chips" style="justify-content:flex-start;margin:0">${ch('acc', ACCS)}</div></div>
+  <div class="cgrp"><b>Use a real Bitmoji or picture</b><p class="small" style="margin:0 0 8px">Pick a picture (a transparent PNG works best). It stays in this browser.</p>
+    <div class="row" style="justify-content:flex-start"><label class="btn ghost" style="display:inline-flex;align-items:center;cursor:pointer">Choose picture<input type="file" id="c-file" accept="image/*" hidden></label>${IMG[cw] ? '<button class="btn ghost" id="c-clear">Remove picture</button>' : ''}</div></div>
+  <div class="row" style="justify-content:flex-start"><button class="btn ghost" id="c-rand">🎲 Surprise me</button><button class="btn ghost" id="c-copy">Copy settings</button><button class="btn ghost" id="c-reset">Reset</button></div>`;
+      }
+      function saveAV() { store.set('ro_avatars', AV); renderAllActors(); renderCust(); }
+      $('#c-tabs').addEventListener('click', e => { const b = e.target.closest('[data-w]'); if (b) { cw = b.dataset.w; renderCust(); act(cw === 'rohan' ? R(stU) : Sh(stU), { pose: 'wave' }); setTimeout(() => act(cw === 'rohan' ? R(stU) : Sh(stU), { pose: 'idle' }), 1500); } });
+      $('#c-body').addEventListener('click', e => {
+        const b = e.target.closest('[data-k]');
+        if (b) { const k = b.dataset.k; AV[cw][k] = ['skin', 'hairc', 'topc'].includes(k) ? +b.dataset.v : b.dataset.v; sfx.pop(); saveAV(); return; }
+        if (e.target.id === 'c-rand') { const a = AV[cw]; a.skin = Math.floor(Math.random() * SKINS.length); a.hair = rand(HAIRS); a.hairc = Math.floor(Math.random() * HAIRC.length); a.top = rand(TOPS); a.topc = Math.floor(Math.random() * TOPC.length); a.acc = rand(ACCS); saveAV(); }
+        if (e.target.id === 'c-reset') { AV[cw] = clone(CONFIG.avatars[cw]); delete IMG[cw]; store.set('ro_avimg', IMG); saveAV(); }
+        if (e.target.id === 'c-clear') { delete IMG[cw]; store.set('ro_avimg', IMG); saveAV(); }
+        if (e.target.id === 'c-copy') copyText(JSON.stringify(AV));
+      });
+      $('#c-body').addEventListener('change', async e => {
+        if (e.target.id !== 'c-file' || !e.target.files[0]) return;
+        try { IMG[cw] = await fileToDataURL(e.target.files[0], 420, 'image/png'); if (!store.set('ro_avimg', IMG)) toast('Picture shown, but it is too big to keep after you close the page.'); saveAV(); } catch (er) { toast('That picture could not be opened.'); }
+      });
+      renderCust();
+
+      /* ============================================================
+         THE I'M SORRY EXPERIENCE
+         ============================================================ */
+      const stS = $('#st-sorry'), soBody = $('#so-body'); let tok = 0;
+      const sBase = () => { scene(stS, { r: Object.assign({}, BASEP, { x: 78, mood: 'neutral', look: 'down' }), s: Object.assign({}, BASEP, { x: 24, mood: 'thoughtful', look: 'down' }), bg: '', link: 0, zoom: 0 }); $$('.bridge', stS).forEach(b => b.remove()); };
+      sBase();
+      async function scene1() {
+        const t = ++tok; sBase();
+        soBody.innerHTML = `<p class="msg" id="so-t1"></p><p class="msg" id="so-t2"></p><div class="row"><button class="btn" id="so-go" hidden>ROHAN HAS SOMETHING TO SAY 💌</button></div>`;
+        await sleep(700); if (t !== tok) return;
+        await typeText($('#so-t1'), 'Sometimes, even people who care about each other get things wrong.', 32); if (t !== tok) return;
+        act(R(stS), { look: 'left', x: 72 }); act(Sh(stS), { look: 'right', x: 28 }); await sleep(900); if (t !== tok) return;
+        await typeText($('#so-t2'), 'And sometimes, a small misunderstanding can make a heart feel a little heavy.', 32); if (t !== tok) return;
+        $('#so-go').hidden = false;
+      }
+      async function scene2() {
+        const t = ++tok;
+        act(R(stS), { x: 54, mood: 'sorry', pose: 'hold', prop: 'letter', look: 'left' }); act(Sh(stS), { mood: 'thoughtful', look: 'right' });
+        soBody.innerHTML = `<div class="letter" id="so-letter" aria-live="polite"></div><div class="row" id="so-ctl"><button class="btn ghost" id="so-skiptype">Show the whole letter</button></div>`;
+        await sleep(calm ? 50 : 1500); if (t !== tok) return;
+        const glow = setInterval(() => { if (t !== tok) { clearInterval(glow); return; } floatUp(stS, ['✨', '💗', '🌸'], 2, { x0: 38, w: 24, y: 55 }); }, 800);
+        await typeText($('#so-letter'), S.apology, 26); clearInterval(glow); if (t !== tok) return;
+        $('#so-ctl').innerHTML = '<button class="btn" id="so-next">Continue 🌷</button>';
+      }
+      async function scene3() {
+        const t = ++tok;
+        soBody.innerHTML = `<p class="msg" id="so-t3"></p><div id="so-opts"></div>`;
+        act(R(stS), { x: 50, pose: 'reachR', prop: 'flower', bloom: 0, mood: 'sorry', look: 'left' });
+        await sleep(calm ? 50 : 900); if (t !== tok) return;
+        act(R(stS), { bloom: 1 }); sfx.chime(); burstAt(R(stS), 'sparkle', 16); await sleep(calm ? 50 : 1100); if (t !== tok) return;
+        act(Sh(stS), rand([{ mood: 'soft', look: 'right' }, { mood: 'thoughtful', look: 'down' }, { mood: 'surprised', look: 'right' }, { mood: 'neutral', look: 'right' }]));
+        await typeText($('#so-t3'), 'No pressure, no expectations. Just a genuine apology and a little reminder that you matter. 🤍', 30); if (t !== tok) return;
+        await sleep(calm ? 50 : 900); if (t !== tok) return;
+        $('#so-opts').innerHTML = `<h3 style="margin-top:26px">How would you like to respond?</h3><p class="small">Any answer is fine, and you can skip this part.</p>
+  <div class="opts"><button class="opt" data-o="A">It's Okay, Rohan 💗</button><button class="opt" data-o="B">Come Here, You Idiot 😂</button><button class="opt" data-o="C">I Need a Little Time 🤍</button><button class="opt" data-o="D">Let's Talk About It 💬</button></div>
+  <div class="row" style="margin-top:16px"><button class="btn ghost" id="so-skip">Skip to the bridge 🌉</button></div>`;
+      }
+      async function respond(o) {
+        const t = ++tok;
+        soBody.innerHTML = `<p class="msg" id="so-r"></p><div id="so-rx"></div><div class="row" id="so-rc"></div>`;
+        const m = $('#so-r'), done = () => { if (t === tok) $('#so-rc').innerHTML = '<button class="btn" id="so-bridge">Continue 🌉</button>'; };
+        if (o === 'A') {
+          scene(stS, { r: { x: 44, mood: 'caring', pose: 'idle', prop: '', bloom: 0, look: 'right' }, s: { x: 56, mood: 'caring', look: 'left', pose: 'idle' }, bg: 'glow' });
+          floatUp(stS, ['💗', '🤍', '✨'], 12); sfx.heart(); await typeText(m, "Thank you for talking things through. Let's keep being honest with each other. 🫶", 30);
+        } else if (o === 'B') {
+          scene(stS, { r: { x: 40, mood: 'surprised', prop: '', pose: 'idle' }, s: { x: 60, mood: 'silly', pose: 'idle', look: 'left' } }); sfx.pop();
+          await sleep(calm ? 50 : 1000); if (t !== tok) return;
+          scene(stS, { r: { mood: 'laugh', anim: 'laugh' }, s: { mood: 'laugh', anim: 'laugh' } }); floatUp(stS, ['😂', '💗'], 8); await sleep(calm ? 50 : 1300); if (t !== tok) return;
+          scene(stS, { r: { x: 47, pose: 'reachR', mood: 'cozy', anim: 'squeeze' }, s: { x: 53, pose: 'reachL', mood: 'cozy', anim: 'squeeze' }, bg: 'glow' }); floatUp(stS, ['💗', '🫂'], 12); sfx.heart();
+          await typeText(m, 'Okay, now come here. We still have important nonsense to discuss. 😂💗', 30);
+        } else if (o === 'C') {
+          scene(stS, { r: { x: 38, mood: 'caring', anim: 'nod', pose: 'idle', prop: '', look: 'right' }, s: { x: 82, mood: 'soft', look: 'down', pose: 'idle' }, bg: '' });
+          await typeText(m, "Of course. Take all the time you need. I'll respect your space, and we can talk whenever you're ready.", 30);
+        } else {
+          scene(stS, { r: { x: 40, mood: 'caring', pose: 'idle', prop: '', look: 'right' }, s: { x: 60, mood: 'caring', look: 'left', pose: 'idle' }, bg: '' });
+          $('#so-rx').innerHTML = `<div class="talk"><label class="small" for="so-note" style="text-align:left">A private note. It stays on this device and is never sent anywhere.</label><textarea id="so-note" rows="5" placeholder="Write whatever you want to say, in your own words."></textarea><div class="row"><button class="btn ghost" id="so-save">Keep it on this device</button><button class="btn ghost" id="so-copy">Copy it</button><button class="btn ghost" id="so-clear">Clear</button></div></div>`;
+          const saved = store.get('ro_note', ''); if (saved) $('#so-note').value = saved;
+          await typeText(m, 'Let\'s understand each other better, one honest conversation at a time.', 30);
+        }
+        done();
+      }
+      async function scene5() {
+        const t = ++tok; scene(stS, { r: Object.assign({}, BASEP, { x: 15, mood: 'caring', look: 'right' }), s: Object.assign({}, BASEP, { x: 85, mood: 'caring', look: 'left' }), bg: '', zoom: 0 });
+        $$('.bridge', stS).forEach(b => b.remove());
+        stS.insertAdjacentHTML('beforeend', `<div class="bridge" aria-hidden="true"><svg viewBox="0 0 600 160"><path class="cable" d="M0 120 Q300 -40 600 120" fill="none" stroke="#fffaf0" stroke-width="5" stroke-linecap="round" style="filter:drop-shadow(0 0 8px #fff)"/><path class="planks" d="M0 120 Q300 -40 600 120" fill="none" stroke="#b49bff" stroke-width="16"/></svg></div>`);
+        soBody.innerHTML = `<p class="msg" id="so-t5" style="white-space:pre-line;max-width:44ch"></p><div class="row" id="so-end"></div>`;
+        await sleep(calm ? 50 : 3000); if (t !== tok) return;
+        scene(stS, { r: { x: 40, mood: 'happy', pose: 'idle' }, s: { x: 60, mood: 'happy', pose: 'idle' }, bg: 'glow' }); floatUp(stS, ['💗', '✨', '🌸'], 10); sfx.chime();
+        await typeText($('#so-t5'), "Friendship isn't about never making mistakes.\n\nIt's about caring enough to listen, learning from each other, and choosing kindness when things get difficult.", 30); if (t !== tok) return;
+        $('#so-end').innerHTML = '<button class="btn ghost" id="so-again">↺ Start this section again</button><button class="btn" data-go="#memories">Keep going 📸</button>';
+      }
+      soBody.addEventListener('click', e => {
+        const id = e.target.id;
+        if (id === 'so-go') scene2();
+        else if (id === 'so-skiptype') { finishType($('#so-letter'), S.apology); }
+        else if (id === 'so-next') scene3();
+        else if (id === 'so-skip' || id === 'so-bridge') scene5();
+        else if (id === 'so-again') scene1();
+        else if (e.target.closest('.opt')) respond(e.target.closest('.opt').dataset.o);
+        else if (id === 'so-save') { toast(store.set('ro_note', $('#so-note').value) ? 'Kept on this device only.' : 'Could not keep it here.'); }
+        else if (id === 'so-copy') copyText($('#so-note').value);
+        else if (id === 'so-clear') { $('#so-note').value = ''; store.set('ro_note', ''); }
+      });
+      $('#so-music').addEventListener('click', () => { if (mus.on && mus.i === 2) musPause(); else musPlay(2); });
+      let sorryStarted = false;
+      new IntersectionObserver(e => { if (e[0].isIntersecting && !sorryStarted) { sorryStarted = true; scene1(); } }, { threshold: .3 }).observe($('#sorry'));
+
+      /* ============================================================
+         MEMORY WALL
+         ============================================================ */
+      const PHG = ['linear-gradient(135deg,#ffd6e8,#c8b6ff)', 'linear-gradient(135deg,#a7d8ff,#e0d4ff)', 'linear-gradient(135deg,#ffe3c7,#ffb7d5)', 'linear-gradient(135deg,#d8f0e6,#a7d8ff)', 'linear-gradient(135deg,#e9d8ff,#ffd6e8)'];
+      const ROTS = [-3, 2, -1.5, 3, -2.5, 1.5, -1], ARS = ['1/1', '4/5', '5/4', '1/1', '4/5', '1/1', '5/4'];
+      function ph(m, i) {
+        return m.photo ? `<span class="photo" style="background-image:url('${m.photo}')"></span>`
+          : `<span class="photo" style="background:${PHG[i % PHG.length]}"><span class="sp" style="left:12%;top:14%">✨</span><span class="sp" style="right:14%;top:24%;animation-delay:-1s">💗</span><span class="sp" style="left:22%;bottom:16%;animation-delay:-2s">⭐</span><span class="ph">${esc(m.emoji || '💗')}</span></span>`;
+      }
+      function renderMemories() {
+        $('#wall').innerHTML = S.memories.map((m, i) => `<button class="polaroid" data-i="${i}" style="--rot:${ROTS[i % 7]}deg;--ar:${ARS[i % 7]}" aria-label="Open memory: ${esc(m.title)}"><i class="tape"></i>${ph(m, i)}<span class="pcap">${esc(m.title)}</span><span class="pdate">${esc(m.date || '')}</span></button>`).join('');
+        $('#wallcap').textContent = S.wallCaption;
+      }
+      let modalEl = null;
+      function openModal(html, onClick) {
+        closeModal(); modalEl = document.createElement('div'); modalEl.className = 'modal';
+        modalEl.innerHTML = `<div class="modal-in" role="dialog" aria-modal="true"><button class="mclose" aria-label="Close">✕</button>${html}</div>`;
+        modalEl.addEventListener('click', e => { if (e.target === modalEl || e.target.closest('.mclose')) closeModal(); else if (onClick) onClick(e); });
+        document.body.appendChild(modalEl); document.body.classList.add('lock'); modalEl.querySelector('.mclose').focus();
+      }
+      function closeModal() { if (!modalEl) return; modalEl.remove(); modalEl = null; if (!intro.isConnected) document.body.classList.remove('lock'); }
+      function openMemory(i) {
+        const m = S.memories[i], n = S.memories.length;
+        openModal(`<div class="big-polaroid">${ph(m, i)}<span class="pcap">${esc(m.title)}</span><span class="pdate">${esc(m.date || '')}</span><p>${esc(m.caption || 'This memory is still waiting for its story. ✨')}</p></div><div class="mnav"><button class="btn ghost" data-mi="${(i + n - 1) % n}">← Back</button><button class="btn ghost" data-mi="${(i + 1) % n}">Next →</button></div>`, e => { const b = e.target.closest('[data-mi]'); if (b) openMemory(+b.dataset.mi); });
+        sfx.pop();
+      }
+      $('#wall').addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) openMemory(+b.dataset.i); });
+
+      /* ============================================================
+         HUG
+         ============================================================ */
+      const stHug = $('#st-hug'); let hugN = 0, hugBusy = false;
+      scene(stHug, { r: { x: 30, mood: 'happy', look: 'right' }, s: { x: 70, mood: 'happy', look: 'left' } });
+      const HUGMSG = ['Sending you a little hug from my side of the screen to yours. 🫂💗', 'One more? Always. 🥹', 'Extra squeeze, because you matter. 🤍', 'Hug delivered. Fully refundable, but nobody ever asks. 😂'];
+      async function doHug() {
+        if (hugBusy) return; hugBusy = true; ac(); const v = hugN % 4; $('#hug-msg').textContent = HUGMSG[v]; hugN++;
+        scene(stHug, { r: { x: 44, pose: 'reachR', mood: 'happy', look: 'right', anim: '' }, s: { x: 56, pose: 'reachL', mood: 'happy', look: 'left', anim: '' }, zoom: 1, bg: 'glow' });
+        await sleep(calm ? 100 : 1700);
+        const an = ['squeeze', 'rock', 'bounce', 'squeeze'][v];
+        scene(stHug, { r: { x: 47, mood: 'cozy', anim: an }, s: { x: 53, mood: 'cozy', anim: an } }); sfx.heart();
+        if (v === 0) floatUp(stHug, ['💗', '🤍', '💕'], 14, { y: 40 });
+        else if (v === 1) { burstAt(stHug, 'sparkle', 40); floatUp(stHug, ['✨', '⭐'], 10, { y: 40 }); }
+        else if (v === 2) { rain('petals', 36); floatUp(stHug, ['🌸'], 8, { y: 40 }); }
+        else { burstAt(stHug, 'hearts', 40); floatUp(stHug, ['🌈', '💗'], 8, { y: 40 }); }
+        await sleep(calm ? 600 : 3800);
+        scene(stHug, { r: { x: 30, pose: 'idle', mood: 'happy', anim: '', look: 'right' }, s: { x: 70, pose: 'idle', mood: 'happy', anim: '', look: 'left' }, zoom: 0, bg: '' });
+        $('#hug-more').hidden = false; hugBusy = false;
+      }
+      $('#hug-btn').addEventListener('click', doHug); $('#hug-more').addEventListener('click', doHug);
+
+      /* ============================================================
+         MAKE-US-LAUGH MACHINE
+         ============================================================ */
+      const stL = $('#st-laugh'), lMsg = $('#laugh-msg'); let lTok = 0, oi = 0;
+      const OUTFITS = ['bigglasses,crown', 'partyhat,bigglasses', 'hat,glasses', 'crown', 'headphones,bigglasses'];
+      act(R(stL), { acc: OUTFITS[0], x: 32 }); act(Sh(stL), { x: 68 });
+      const lBase = () => scene(stL, { r: Object.assign({}, BASEP, { x: 32, mood: 'happy', look: 'right' }), s: Object.assign({}, BASEP, { x: 68, mood: 'happy', look: 'left' }), chaos: 0 });
+      lBase();
+      const JOKES = [
+        ['Why did the cookie go to the doctor?', 'Because it felt crummy. 🍪'], ['What do you call two best friends who cannot stop laughing?', 'A very loud problem. 😂'],
+        ['Why was the phone wearing glasses?', 'It lost all its contacts. 📱'], ['I told my brain to stop overthinking.', 'It said, "Let me think about it." 🧠'],
+        ['Why did the star get invited everywhere?', 'It was always a bright idea. ⭐'], ['What is a bestie\'s favourite kind of math?', 'Add the snacks, subtract the drama. 🍟'], ['Why did the moon skip dinner?', 'It was already full. 🌕']
+      ];
+      const DANCES = ["Bro really thinks he's the main character. 💀😂", 'Somebody stop him. Actually, no. Keep going. 🕺', "That's not a dance, that's a cry for help. 😭", '10 out of 10 for confidence. 2 out of 10 for rhythm. 🫡'];
+      const CHAOS = ['NO THOUGHTS. JUST BESTIE ENERGY. 😭✨', 'SYSTEM ERROR: TOO MUCH FUN. 🤪', 'ALERT: ZERO BRAIN CELLS, MAXIMUM JOY. 🎉'];
+      const MOMENTS = [
+        { r: { mood: 'grin', pose: 'wave', look: 'front' }, s: { mood: 'grin', pose: 'wave', look: 'front' }, msg: 'Hi! Yes, you. Hi. 👋' },
+        { r: { mood: 'nervous', anim: 'shake' }, s: { mood: 'laugh', anim: 'laugh' }, msg: 'He says he meant to do that. 😂' },
+        { r: { mood: 'surprised' }, s: { mood: 'smirk', prop: 'cookie', pose: 'hold' }, msg: 'Excuse me, that was my cookie. 🍪' },
+        { r: { mood: 'shy', look: 'down' }, s: { mood: 'shy', look: 'down' }, msg: 'Why is it suddenly awkward? Nobody knows. 😊' },
+        { r: { mood: 'thoughtful' }, s: { mood: 'thoughtful' }, msg: 'We had a really good idea. We forgot it. 💭' },
+        { r: { mood: 'sleepy', anim: 'sleep' }, s: { mood: 'sleepy', anim: 'sleep' }, msg: 'Five more minutes... 😴' }
+      ];
+      async function laugh(k) {
+        const t = ++lTok; ac(); lBase(); lMsg.textContent = '';
+        const back = async ms => { await sleep(calm ? 200 : ms); if (t === lTok) lBase(); };
+        if (k === 'joke') {
+          const j = rand(JOKES); scene(stL, { r: { mood: 'smirk' }, s: { mood: 'thoughtful', look: 'right' } }); lMsg.textContent = j[0]; sfx.pop();
+          await sleep(calm ? 300 : 2000); if (t !== lTok) return; lMsg.textContent = j[0] + '\n' + j[1]; lMsg.style.whiteSpace = 'pre-line';
+          scene(stL, { r: { mood: 'grin' }, s: { mood: 'laugh', anim: 'laugh' } }); floatUp(stL, ['😂', '🤣'], 6); await back(3000);
+        } else if (k === 'dance') {
+          lMsg.style.whiteSpace = ''; lMsg.textContent = rand(DANCES); scene(stL, { r: { mood: 'silly', pose: 'dancep', anim: 'dance' }, s: { mood: 'smirk', look: 'left' } }); floatUp(stL, ['🎵', '🎶', '🕺'], 8); sfx.heart(); await back(4200);
+        } else if (k === 'chaos') {
+          lMsg.style.whiteSpace = ''; lMsg.textContent = rand(CHAOS); scene(stL, { r: { mood: 'excited', pose: 'dancep', anim: 'dance' }, s: { mood: 'excited', pose: 'dancep', anim: 'dance' }, chaos: !calm });
+          burstAt(stL, 'confetti', 70); floatUp(stL, ['⭐', '✨', '🎉', '💥'], 14); sfx.tada(); rain('stars', 24); await back(4200);
+        } else if (k === 'angry') {
+          lMsg.style.whiteSpace = ''; scene(stL, { s: { mood: 'annoyed', pose: 'cross', look: 'left' }, r: { mood: 'nervous', pose: 'hold', prop: 'cookie', x: 44, look: 'right' } });
+          lMsg.textContent = 'Official treaty proposal: One cookie, two idiots, zero unnecessary drama. 🍪🤝'; sfx.pop();
+          await sleep(calm ? 300 : 3200); if (t !== lTok) return; scene(stL, { s: { mood: 'smirk' }, r: { mood: 'happy' } }); lMsg.textContent = 'Treaty reviewed. Terms and cookies are non-refundable. 🤝'; floatUp(stL, ['🍪', '🤝'], 5); await back(3200);
+        } else if (k === 'drama') {
+          lMsg.style.whiteSpace = ''; lMsg.textContent = 'WHY ARE WE BEING SO DRAMATIC?? 😭😭'; scene(stL, { r: { mood: 'dramatic', pose: 'hands', anim: 'shake' }, s: { mood: 'dramatic', pose: 'hands', anim: 'shake' } }); floatUp(stL, ['😭', '💧', '🎭'], 8); await back(3800);
+        } else if (k === 'random') {
+          const m = rand(MOMENTS); lMsg.style.whiteSpace = ''; lMsg.textContent = m.msg; scene(stL, { r: Object.assign({}, BASEP, m.r), s: Object.assign({}, BASEP, m.s) }); floatUp(stL, ['✨', '💗'], 5); sfx.pop(); await back(3800);
+        } else if (k === 'hat') { oi = (oi + 1) % OUTFITS.length; act(R(stL), { acc: OUTFITS[oi] }); lMsg.textContent = 'New look unlocked. Confidence: unreasonable. 😎'; sfx.pop(); burstAt(R(stL), 'sparkle', 14); }
+      }
+      $('#laugh').addEventListener('click', e => { const b = e.target.closest('[data-l]'); if (b) laugh(b.dataset.l); });
+
+      /* ============================================================
+         GAMES
+         ============================================================ */
+      let heartsStop = () => { };
+      $$('[data-g]').forEach(b => b.addEventListener('click', () => {
+        heartsStop(); $$('[data-g]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+        ['quiz', 'hearts', 'stars'].forEach(g => { $('#g-' + g).hidden = g !== b.dataset.g; });
+      }));
+
+      /* --- A: quiz --- */
+      (function quiz() {
+        const P = $('#g-quiz'); let qi = 0, ok = 0, graded = 0, played = 0;
+        function render() {
+          if (qi >= S.quiz.length) return end(); const q = S.quiz[qi];
+          P.innerHTML = `<div class="stage mini" id="st-q" data-deco="sky"></div><p class="eyebrow center">Question ${qi + 1} of ${S.quiz.length}</p><h3 class="center">${esc(q.q)}</h3><div class="ans"><button class="btn" data-a="rohan">Rohan 💙</button><button class="btn" data-a="sheetal">Sheetal 💗</button></div><div class="fb" id="q-fb"></div><div class="row" id="q-next"></div>`;
+          const st = $('#st-q'); st.dataset.nopoke = 1; buildStage(st); scene(st, { r: { x: 36, mood: 'thoughtful' }, s: { x: 64, mood: 'thoughtful' } });
+        }
+        function end() {
+          const msg = graded ? `You matched ${ok} of ${graded}. ${ok === graded ? 'Basically a friendship expert. 🥳' : ok >= graded / 2 ? 'Not bad at all. 💗' : 'Time to compare notes. 😂'}` : `You made ${played} guesses. Time to argue about them with Rohan. 😂💗`;
+          P.innerHTML = `<div class="stage mini" id="st-q" data-deco="sky"></div><h3 class="center">That's the quiz!</h3><p class="fb">${esc(msg)}</p><div class="row"><button class="btn" id="q-restart">Play again</button></div>`;
+          const st = $('#st-q'); st.dataset.nopoke = 1; buildStage(st); scene(st, { r: { x: 36, mood: 'proud', pose: 'up', anim: 'dance' }, s: { x: 64, mood: 'proud', pose: 'up', anim: 'dance' } }); burstAt(st, 'confetti', 40); sfx.tada();
+        }
+        P.addEventListener('click', e => {
+          const b = e.target.closest('[data-a]');
+          if (b && !P.dataset.lock) {
+            const q = S.quiz[qi], st = $('#st-q'); $$('[data-a]', P).forEach(x => x.disabled = true); played++; ac(); let fb;
+            if (q.a == null) { fb = 'Interesting pick! Everyone has an opinion on this one. 😏'; scene(st, { r: { mood: 'smirk', look: 'left' }, s: { mood: 'smirk', look: 'right' } }); sfx.pop(); }
+            else if (b.dataset.a === q.a) { ok++; graded++; fb = 'Yes! You know us too well. 🥳'; scene(st, { r: { mood: 'excited', anim: 'jump', pose: 'up' }, s: { mood: 'excited', anim: 'jump', pose: 'up' } }); burstAt(st, 'confetti', 30); sfx.tada(); }
+            else { graded++; fb = `Ooh, not quite. It was ${q.a === 'rohan' ? 'Rohan 💙' : 'Sheetal 💗'}. 😂`; scene(st, { r: { mood: 'laugh', anim: 'laugh' }, s: { mood: 'laugh', anim: 'laugh' } }); sfx.oops(); }
+            $('#q-fb').textContent = fb; $('#q-next').innerHTML = `<button class="btn" id="q-nx">${qi + 1 >= S.quiz.length ? 'See result' : 'Next question'}</button>`;
+          } else if (e.target.id === 'q-nx') { qi++; render(); }
+          else if (e.target.id === 'q-restart') { qi = ok = graded = played = 0; render(); }
+        });
+        window.__quizReset = () => { qi = ok = graded = played = 0; render(); };
+        render();
+      })();
+
+      /* --- B: catch the hearts --- */
+      (function heartsGame() {
+        const P = $('#g-hearts'), W = 420, H = 560, DPR = 2; let best = store.get('ro_best', 0);
+        P.innerHTML = `<div class="hud"><span>Score <b id="h-score">0</b></span><span>Best <b id="h-best">${best}</b></span><span>Time <b id="h-time">30</b></span></div><div class="gwrap"><canvas class="gcv" id="h-cv" width="${W * DPR}" height="${H * DPR}" aria-label="Catch the Hearts game"></canvas><div class="overlay" id="h-ov"><div><h3>Catch the Hearts 💗</h3><p class="small">Drag, slide, or use ← → to move the basket.<br>30 seconds. Stars count triple.</p><button class="btn glow" id="h-start">Start</button></div></div></div>`;
+        const cvs = $('#h-cv'), c = cvs.getContext('2d'); c.scale(DPR, DPR);
+        const g = { run: false, score: 0, t: 30, px: W / 2, items: [], spawn: 0, last: 0, keys: {}, pops: [] };
+        const sk = SKINS[AV.sheetal.skin] || SKINS[1], hc = HAIRC[AV.sheetal.hairc] || HAIRC[0];
+        const bgStars = Array.from({ length: 30 }, () => [Math.random() * W, Math.random() * H, Math.random() * 1.6 + .4]);
+        function heart(x, y, s, col) { c.fillStyle = col; c.beginPath(); c.moveTo(x, y + s * .35); c.bezierCurveTo(x - s, y - s * .2, x - s * .6, y - s, x, y - s * .4); c.bezierCurveTo(x + s * .6, y - s, x + s, y - s * .2, x, y + s * .35); c.fill(); }
+        function star(x, y, s) { c.fillStyle = '#ffd45e'; c.beginPath(); for (let i = 0; i < 10; i++) { const r = i % 2 ? s * .45 : s, a = i * Math.PI / 5 - Math.PI / 2; c[i ? 'lineTo' : 'moveTo'](x + Math.cos(a) * r, y + Math.sin(a) * r); } c.fill(); }
+        function draw() {
+          const gr = c.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, '#2d2358'); gr.addColorStop(1, '#6a3f86'); c.fillStyle = gr; c.fillRect(0, 0, W, H);
+          c.fillStyle = 'rgba(255,255,255,.7)'; bgStars.forEach(s => { c.beginPath(); c.arc(s[0], s[1], s[2], 0, 7); c.fill(); });
+          g.items.forEach(it => it.s === 'star' ? star(it.x, it.y, 15) : heart(it.x, it.y, 15, '#ff7eb0'));
+          const x = g.px, y = 515;
+          c.fillStyle = '#C8B6FF'; c.beginPath(); c.roundRect ? c.roundRect(x - 18, y + 22, 36, 30, 12) : c.rect(x - 18, y + 22, 36, 30); c.fill();
+          c.fillStyle = sk; c.beginPath(); c.arc(x, y, 25, 0, 7); c.fill();
+          c.fillStyle = hc; c.beginPath(); c.arc(x, y - 4, 26, Math.PI * 1.02, Math.PI * 1.98); c.fill();
+          c.fillStyle = '#2a1f3d'; c.beginPath(); c.arc(x - 9, y + 2, 3, 0, 7); c.arc(x + 9, y + 2, 3, 0, 7); c.fill();
+          c.fillStyle = 'rgba(255,143,184,.6)'; c.beginPath(); c.arc(x - 16, y + 9, 4.5, 0, 7); c.arc(x + 16, y + 9, 4.5, 0, 7); c.fill();
+          c.strokeStyle = '#2a1f3d'; c.lineWidth = 2; c.beginPath(); c.arc(x, y + 8, 7, .15 * Math.PI, .85 * Math.PI); c.stroke();
+          c.fillStyle = '#FFB7D5'; c.strokeStyle = '#fff8ee'; c.lineWidth = 3; c.beginPath(); c.moveTo(x - 40, y - 52); c.lineTo(x + 40, y - 52); c.lineTo(x + 30, y - 26); c.lineTo(x - 30, y - 26); c.closePath(); c.fill(); c.stroke();
+          g.pops.forEach(p => { c.globalAlpha = p.a; c.fillStyle = '#fff8ee'; c.font = '600 22px Fredoka, sans-serif'; c.textAlign = 'center'; c.fillText(p.t, p.x, p.y); c.globalAlpha = 1; });
+        }
+        function frame(ts) {
+          if (!g.run) return; const dt = Math.min(.05, (ts - g.last) / 1000); g.last = ts; g.t -= dt;
+          if (g.t <= 0) { g.t = 0; return end(); }
+          const el = 30 - g.t; g.spawn -= dt;
+          if (g.spawn <= 0) { g.spawn = Math.max(.26, .75 - el * .016); g.items.push({ x: 24 + Math.random() * (W - 48), y: -20, s: Math.random() < .14 ? 'star' : 'heart', v: 130 + el * 7 + Math.random() * 50 }); }
+          if (g.keys.ArrowLeft || g.keys.a) g.px -= 340 * dt; if (g.keys.ArrowRight || g.keys.d) g.px += 340 * dt; g.px = Math.max(40, Math.min(W - 40, g.px));
+          g.items = g.items.filter(it => {
+            it.y += it.v * dt;
+            if (it.y > 462 && it.y < 492 && Math.abs(it.x - g.px) < 46) { const pts = it.s === 'star' ? 3 : 1; g.score += pts; $('#h-score').textContent = g.score; g.pops.push({ x: it.x, y: 450, t: '+' + pts, a: 1 }); it.s === 'star' ? sfx.chime() : sfx.heart(); return false; }
+            return it.y < H + 20;
+          });
+          g.pops.forEach(p => { p.y -= 40 * dt; p.a -= dt * 1.4; }); g.pops = g.pops.filter(p => p.a > 0);
+          $('#h-time').textContent = Math.ceil(g.t); draw(); requestAnimationFrame(frame);
+        }
+        function start() { ac(); Object.assign(g, { run: true, score: 0, t: 30, px: W / 2, items: [], spawn: 0, pops: [], last: performance.now() }); $('#h-score').textContent = 0; $('#h-ov').hidden = true; window.addEventListener('keydown', kd); window.addEventListener('keyup', ku); requestAnimationFrame(frame); }
+        function stop() { g.run = false; window.removeEventListener('keydown', kd); window.removeEventListener('keyup', ku); }
+        function end() {
+          stop(); draw(); if (g.score > best) { best = g.score; store.set('ro_best', best); $('#h-best').textContent = best; }
+          const m = g.score >= 40 ? 'Heart-catching legend! 🥳' : g.score >= 22 ? 'Lovely catching! 💗' : 'A good start. Try again? 🤍';
+          const ov = $('#h-ov'); ov.hidden = false; ov.innerHTML = `<div><h3>${g.score} hearts!</h3><p class="small">${m}<br>Best: ${best}</p><button class="btn glow" id="h-start">Play again</button></div>`;
+          burstAt(cvs, 'confetti', 60); burstAt(cvs, 'hearts', 30); sfx.tada();
+        }
+        const kd = e => { const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; if (['ArrowLeft', 'ArrowRight', 'a', 'd'].includes(k)) { g.keys[k] = true; e.preventDefault(); } };
+        const ku = e => { const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; g.keys[k] = false; };
+        const mv = e => { if (!g.run) return; const r = cvs.getBoundingClientRect(); g.px = Math.max(40, Math.min(W - 40, (e.clientX - r.left) / r.width * W)); };
+        cvs.addEventListener('pointermove', mv); cvs.addEventListener('pointerdown', mv);
+        P.addEventListener('click', e => { if (e.target.id === 'h-start') start(); });
+        heartsStop = stop; draw();
+      })();
+
+      /* --- C: constellation --- */
+      (function constellation() {
+        const P = $('#g-stars');
+        const CON = [
+          { w: 'TRUST', p: [[70, 220], [120, 150], [170, 190], [230, 110], [300, 150], [340, 80]] },
+          { w: 'LAUGHTER', p: [[80, 110], [120, 190], [200, 232], [280, 190], [320, 110]] },
+          { w: 'KINDNESS', closed: true, p: [[200, 235], [130, 175], [110, 115], [150, 80], [200, 120], [250, 80], [290, 115], [270, 175]] },
+          { w: 'MEMORIES', p: [[60, 200], [110, 140], [170, 170], [210, 100], [270, 150], [330, 90], [350, 200]] },
+          { w: 'UNDERSTANDING', p: [[90, 90], [90, 170], [160, 130], [240, 130], [310, 90], [310, 170]] },
+          { w: 'FRIENDSHIP', p: [[75, 150], [100, 105], [150, 100], [200, 150], [250, 200], [305, 195], [325, 150], [305, 105], [250, 100]] }
+        ];
+        let ci = 0, ni = 0, done = [], won = false; const bg = Array.from({ length: 40 }, () => [Math.random() * 400, Math.random() * 300, Math.random() * 1.2 + .3]);
+        const lines = (pts, closed, op) => { let d = ''; pts.forEach((p, i) => d += (i ? 'L' : 'M') + p[0] + ' ' + p[1]); if (closed) d += 'Z'; return `<path d="${d}" fill="none" stroke="#FFB7D5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="${op}" style="filter:drop-shadow(0 0 4px #FFB7D5)"/>`; };
+        const bgs = () => bg.map(s => `<circle cx="${s[0]}" cy="${s[1]}" r="${s[2]}" fill="#fff" opacity=".5"/>`).join('');
+        function render() {
+          if (won) return final(); const c = CON[ci], complete = ni >= c.p.length;
+          let s = bgs(); done.forEach(k => { s += lines(CON[k].p, CON[k].closed, .3) + CON[k].p.map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#fff8ee" opacity=".6"/>`).join(''); });
+          s += lines(c.p.slice(0, ni), complete && c.closed, 1);
+          s += c.p.map((p, i) => `<g class="cstar${i === ni ? ' next' : ''}" data-i="${i}"><circle class="ring" cx="${p[0]}" cy="${p[1]}" r="9"/><circle class="core" cx="${p[0]}" cy="${p[1]}" r="${i < ni ? 5 : 4}"/><circle class="hit" cx="${p[0]}" cy="${p[1]}" r="22"/></g>`).join('');
+          P.innerHTML = `<p class="small center">Constellation ${ci + 1} of ${CON.length}. Tap the glowing star, then the next one.</p><svg class="sky" viewBox="0 0 400 300" role="img" aria-label="Night sky">${s}</svg><div class="cword" id="cword">${complete ? c.w : ''}</div><div class="row">${complete ? `<button class="btn" id="c-next">${ci + 1 >= CON.length ? 'See our sky ✨' : 'Next constellation'}</button>` : ''}</div>`;
+        }
+        function final() {
+          let s = bgs(); CON.forEach(k => { s += lines(k.p, k.closed, .85) + k.p.map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="3.4" fill="#fff8ee"/>`).join(''); });
+          P.innerHTML = `<div class="stage night" id="st-cs" style="height:clamp(320px,60vw,420px)"></div><p class="msg">Different stars. One beautiful little sky. ✨</p><div class="row"><button class="btn ghost" id="c-again">Play again</button></div>`;
+          const st = $('#st-cs'); st.dataset.nopoke = 1; buildStage(st); st.querySelector('.deco').insertAdjacentHTML('afterbegin', `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMin slice" style="position:absolute;inset:0;width:100%;height:100%">${s}</svg>`);
+          scene(st, { r: { x: 38, mood: 'happy', look: 'up', anim: 'sway' }, s: { x: 62, mood: 'happy', look: 'up', anim: 'sway' } }); rain('sparkle', 30); sfx.tada();
+        }
+        P.addEventListener('click', e => {
+          const g = e.target.closest('.cstar');
+          if (g) { ac(); const i = +g.dataset.i, c = CON[ci]; if (ni >= c.p.length) return; if (i === ni) { ni++; blip(440 + ni * 70, .5, 'sine', .1); if (ni === c.p.length) { sfx.chime(); burstAt($('svg.sky', P), 'sparkle', 26); done.push(ci); done.pop(); } render(); } else { sfx.oops(); g.style.opacity = .5; setTimeout(() => g.style.opacity = '', 250); } return; }
+          if (e.target.id === 'c-next') { done.push(ci); ci++; ni = 0; if (ci >= CON.length) won = true; render(); }
+          if (e.target.id === 'c-again') { ci = 0; ni = 0; done = []; won = false; render(); }
+        });
+        render();
+      })();
+
+      /* ============================================================
+         NOTES
+         ============================================================ */
+      const ENVI = ['💌', '✉️', '🌷', '⭐', '💗', '📨', '🧸', '🌈', '🍀', '🌸'];
+      function renderNotes() { $('#envs').innerHTML = S.notes.map((n, i) => `<button class="env" style="animation-delay:${(-i * .5).toFixed(1)}s" data-n="${i}" aria-label="Open note ${i + 1}">${ENVI[i % ENVI.length]}</button>`).join(''); }
+      let lastNote = -1;
+      function showToday() {
+        if (!S.notes.length) { $('#today').innerHTML = ''; return; } let i; do { i = Math.floor(Math.random() * S.notes.length); } while (S.notes.length > 1 && i === lastNote);
+        lastNote = i; $('#today').innerHTML = `<div class="paper" style="font-size:clamp(26px,4.6vw,34px)">${esc(S.notes[i])}</div>`;
+      }
+      $('#envs').addEventListener('click', e => { const b = e.target.closest('[data-n]'); if (!b) return; sfx.pop(); openModal(`<div class="paper">${esc(S.notes[+b.dataset.n])}</div>`); burst(innerWidth / 2, innerHeight / 2, 'hearts', 14); });
+      let notesIn = false; new IntersectionObserver(e => { if (e[0].isIntersecting && !notesIn) showToday(); notesIn = e[0].isIntersecting; }, { threshold: .35 }).observe($('#notes'));
+
+      /* ============================================================
+         MUSIC
+         ============================================================ */
+      $('#pl-play').addEventListener('click', () => { if (mus.on) musPause(); else musPlay(); });
+      $('#pl-next').addEventListener('click', () => { const i = (mus.i + 1) % TRACKS.length, was = mus.on; mus.i = i; mus.step = 0; if (was) musPlay(i); else musUI(); });
+      $('#pl-prev').addEventListener('click', () => { const i = (mus.i + TRACKS.length - 1) % TRACKS.length, was = mus.on; mus.i = i; mus.step = 0; if (was) musPlay(i); else musUI(); });
+      $('#pl-vol').addEventListener('input', e => { vol = e.target.value / 100; setMaster(); });
+      function renderSongs() { $('#songs').innerHTML = S.songs.map(s => `<div class="card song"><span style="font-size:28px">🎵</span><div style="min-width:0"><b>${esc(s.t)}</b> <span>· ${esc(s.a)}</span><br><span>${esc(s.n)}</span></div></div>`).join(''); }
+      const vz = $('#viz'), vx = vz.getContext('2d'); let vizVis = false, vizRun = false; const vdata = new Uint8Array(32);
+      function vizLoop() {
+        if (!vizVis) { vizRun = false; return; } vizRun = true; requestAnimationFrame(vizLoop);
+        vx.clearRect(0, 0, vz.width, vz.height); if (analyser && mus.on) analyser.getByteFrequencyData(vdata); else vdata.fill(0);
+        const bw = vz.width / 32; for (let i = 0; i < 32; i++) { const h = 3 + (vdata[i] / 255) * 52; vx.fillStyle = i % 2 ? '#FFB7D5' : '#C8B6FF'; vx.fillRect(i * bw + 2, vz.height - h, bw - 4, h); }
+      }
+      new IntersectionObserver(e => { vizVis = e[0].isIntersecting; if (vizVis && !vizRun) vizLoop(); }, { threshold: .1 }).observe($('#music'));
+
+      /* ============================================================
+         ONE LAST THING
+         ============================================================ */
+      const stLast = $('#st-last');
+      $('#last-open').addEventListener('click', async () => {
+        ac(); $('#last-open').hidden = true; $('#last-sky').hidden = false; $('#last-sky').scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'center' });
+        scene(stLast, { r: { x: 40, mood: 'caring', look: 'up', anim: 'sway' }, s: { x: 60, mood: 'caring', look: 'up', anim: 'sway' }, inf: 1 });
+        rain('sparkle', 30); sfx.chime(); await typeText($('#last-msg'), S.final, 30);
+        $('#last-sign').textContent = 'Made with love, from Rohan to Sheetal. 💙✨'; floatUp(stLast, ['💗', '✨', '⭐'], 10); sfx.heart();
+      });
+
+      /* ============================================================
+         ROHAN'S EDITOR
+         ============================================================ */
+      const drawer = $('#drawer'); let resetArmed = false;
+      function renderEditor() {
+        const sel = a => `<select data-k="qa"><option value="">No answer set</option><option value="rohan"${a === 'rohan' ? ' selected' : ''}>Rohan</option><option value="sheetal"${a === 'sheetal' ? ' selected' : ''}>Sheetal</option></select>`;
+        drawer.innerHTML = `<div class="ed-h"><h3>✏️ Rohan's editor</h3><button class="chip" data-ed="close">Close</button></div>
+  <p class="small">Changes are kept in this browser only. To make them permanent for Sheetal, use “Copy my text” at the bottom and send it to Claude, along with any photos.</p>
+  <h4>Welcome message</h4><textarea rows="8" data-k="welcome">${esc(S.welcome)}</textarea>
+  <h4>Apology letter</h4><textarea rows="12" data-k="apology">${esc(S.apology)}</textarea>
+  <h4>Closing message</h4><textarea rows="8" data-k="final">${esc(S.final)}</textarea>
+  <h4>Appreciation notes</h4>
+  ${S.notes.map((n, i) => `<div class="ed-row" data-i="${i}"><textarea rows="2" data-k="note">${esc(n)}</textarea><div class="ed-btns"><button data-ed="up">↑</button><button data-ed="down">↓</button><button data-ed="del">✕</button></div></div>`).join('')}
+  <button class="chip" data-ed="addnote">+ Add a note</button>
+  <h4>Memories</h4>
+  ${S.memories.map((m, i) => `<div class="ed-mem" data-i="${i}"><input type="text" data-k="mt" value="${esc(m.title)}" aria-label="Title"><input type="text" data-k="md" value="${esc(m.date)}" placeholder="Date (optional)" aria-label="Date"><textarea rows="2" data-k="mc" placeholder="Caption" aria-label="Caption">${esc(m.caption)}</textarea><div class="row" style="justify-content:flex-start"><label class="chip" style="cursor:pointer">${m.photo ? 'Change photo' : 'Add photo'}<input type="file" accept="image/*" data-k="mp" hidden></label>${m.photo ? '<button class="chip" data-ed="clearphoto">Remove photo</button>' : ''}</div></div>`).join('')}
+  <h4>Wall caption</h4><input type="text" data-k="wall" value="${esc(S.wallCaption)}">
+  <h4>Quiz</h4>
+  ${S.quiz.map((q, i) => `<div class="ed-row" data-i="${i}"><div style="display:grid;gap:6px"><input type="text" data-k="qq" value="${esc(q.q)}" aria-label="Question">${sel(q.a)}</div><div class="ed-btns"><button data-ed="qdel">✕</button></div></div>`).join('')}
+  <button class="chip" data-ed="addq">+ Add a question</button>
+  <h4>Songs</h4>
+  ${S.songs.map((s, i) => `<div class="ed-mem" data-i="${i}"><input type="text" data-k="st" value="${esc(s.t)}" aria-label="Song"><input type="text" data-k="sa" value="${esc(s.a)}" aria-label="Artist"><input type="text" data-k="sn" value="${esc(s.n)}" aria-label="Note"><button class="chip" data-ed="sdel">Remove</button></div>`).join('')}
+  <button class="chip" data-ed="addsong">+ Add a song</button>
+  <h4>Hand it over</h4><div class="row" style="justify-content:flex-start"><button class="btn" data-ed="export">Copy my text</button><button class="btn ghost" data-ed="reset">${resetArmed ? 'Click again to reset everything' : 'Reset to the original'}</button></div>`;
+      }
+      function openDrawer() { renderEditor(); drawer.classList.add('open'); }
+      function closeDrawer() { drawer.classList.remove('open'); resetArmed = false; }
+      $('#ed-open').addEventListener('click', openDrawer);
+      addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeDrawer(); } });
+      let edT; const later = f => { clearTimeout(edT); edT = setTimeout(f, 250); };
+      drawer.addEventListener('input', e => {
+        const k = e.target.dataset.k, row = e.target.closest('[data-i]'), i = row ? +row.dataset.i : 0; if (!k || k === 'mp') return;
+        if (k === 'welcome') S.welcome = e.target.value; else if (k === 'apology') S.apology = e.target.value; else if (k === 'final') S.final = e.target.value;
+        else if (k === 'note') { S.notes[i] = e.target.value; later(renderNotes); }
+        else if (k === 'mt') { S.memories[i].title = e.target.value; later(renderMemories); } else if (k === 'md') { S.memories[i].date = e.target.value; later(renderMemories); } else if (k === 'mc') S.memories[i].caption = e.target.value;
+        else if (k === 'wall') { S.wallCaption = e.target.value; later(renderMemories); }
+        else if (k === 'qq') { S.quiz[i].q = e.target.value; later(window.__quizReset); } else if (k === 'qa') { S.quiz[i].a = e.target.value || null; }
+        else if (k === 'st') { S.songs[i].t = e.target.value; later(renderSongs); } else if (k === 'sa') { S.songs[i].a = e.target.value; later(renderSongs); } else if (k === 'sn') { S.songs[i].n = e.target.value; later(renderSongs); }
+        persist();
+      });
+      drawer.addEventListener('change', async e => {
+        if (e.target.dataset.k === 'qa') { const i = +e.target.closest('[data-i]').dataset.i; S.quiz[i].a = e.target.value || null; persist(); return; }
+        if (e.target.dataset.k !== 'mp' || !e.target.files[0]) return; const i = +e.target.closest('[data-i]').dataset.i;
+        try { S.memories[i].photo = await fileToDataURL(e.target.files[0], 900, 'image/jpeg', .82); persist(); renderMemories(); renderEditor(); toast('Photo added.'); } catch (er) { toast('That photo could not be opened.'); }
+      });
+      drawer.addEventListener('click', e => {
+        const b = e.target.closest('[data-ed]'); if (!b) return; const a = b.dataset.ed, row = b.closest('[data-i]'), i = row ? +row.dataset.i : 0, mv = (arr, d) => { const j = i + d; if (j < 0 || j >= arr.length) return;[arr[i], arr[j]] = [arr[j], arr[i]]; };
+        if (a === 'close') return closeDrawer();
+        if (a === 'up') mv(S.notes, -1); if (a === 'down') mv(S.notes, 1); if (a === 'del') S.notes.splice(i, 1);
+        if (a === 'addnote') S.notes.push('A new note for Sheetal. 💗');
+        if (a === 'clearphoto') S.memories[i].photo = '';
+        if (a === 'addq') S.quiz.push({ q: 'A new question?', a: null }); if (a === 'qdel') S.quiz.splice(i, 1);
+        if (a === 'addsong') S.songs.push({ t: 'New song', a: 'Artist', n: 'Why it sounds like us.' }); if (a === 'sdel') S.songs.splice(i, 1);
+        if (a === 'export') { copyText(JSON.stringify({ welcome: S.welcome, apology: S.apology, final: S.final, wallCaption: S.wallCaption, notes: S.notes, memories: S.memories.map(m => ({ title: m.title, date: m.date, caption: m.caption, hasPhoto: !!m.photo })), quiz: S.quiz, songs: S.songs, avatars: AV }, null, 1)); return; }
+        if (a === 'reset') { if (!resetArmed) { resetArmed = true; renderEditor(); return; } ['ro_content', 'ro_avatars', 'ro_avimg', 'ro_note', 'ro_best'].forEach(k => { try { localStorage.removeItem(k); } catch (er) { } }); location.reload(); return; }
+        persist(); renderNotes(); renderMemories(); renderSongs(); window.__quizReset(); renderEditor();
+      });
+
+      /* ============================================================
+         FIRST RENDER
+         ============================================================ */
+      renderNotes(); renderMemories(); renderSongs(); showToday(); musUI();
+    })();
+  </script>
+
+</body>
+
+</html>
