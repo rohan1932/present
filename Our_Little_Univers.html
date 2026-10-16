@@ -32,6 +32,7 @@
       display: none !important
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -2965,9 +2966,12 @@
        (footer, "Rohan's editor"). Photos are added in the editor.
        ============================================================ */
     const CONFIG = {
-      welcome: "Hey Sheetal! 🥹💗\n\nYou know, some people enter our lives and somehow make ordinary days feel a little more special.\n\nThis little website is something I made just for you, to celebrate our friendship, our silly moments, our random conversations, our laughter, our misunderstandings, and all the little things that make our bond ours.\n\nSo, welcome to our tiny universe.\n\nMade with love, from Rohan to Sheetal. 💙✨",
-      apology: "Hey Sheetal... 🥺💗\n\nI don't want to pretend that I always get everything right.\n\nSometimes I might say the wrong thing, misunderstand something, or fail to express what I really mean.\n\nIf I've hurt you, upset you, or made you feel unimportant, I'm genuinely sorry.\n\nYou deserve to have your feelings heard and respected.\n\nI never want a misunderstanding to stop us from talking honestly.\n\nI'm not asking you to forget anything or pretend everything is okay immediately.\n\nI just want you to know that our friendship matters to me, and I'm willing to listen, understand, and do better.\n\nWhenever you're ready, I'd like us to talk.\n\n— Rohan 💙",
-      wallCaption: "Not every memory needs a perfect picture; some are better kept in the heart. ❤️✨And those empty frames above? 😂 Let’s just say we’re leaving a little space for future memories… if destiny, the universe, and our friendship all agree! 🙏😄No pressure, no expectations — just good vibes, great friendship, and memories waiting to happen. 🤝💫",
+  welcome: "Hey Sheetal! 🥹💗\n\nPata hai, kuch log life mein aise aate hain ki normal se din bhi thode special lagne lagte hain. Bina kisi special reason ke hasi aa jaati hai, random conversations bhi yaad reh jaati hain, aur chhoti-chhoti baatein bhi apni si lagne lagti hain. ✨\n\nToh yeh chhota sa corner maine humari friendship ke naam kiya hai — humari silly baatein, random bakwaas 😂, woh hasi-mazaak, chhoti-moti misunderstandings, aur woh saare moments jo shayad kisi aur ko ordinary lagein, but humare liye apne hain.\n\nYeh koi perfect website nahi hai, bas ek chhoti si duniya hai jisme thodi si meri creativity, thodi si tumhari smile, aur bahut saari humari memories hain. 🫶🏻\n\nSo, welcome to our little universe, Sheetal! 🌙💫\n\nAur haan, website mein koi bug mile toh developer ko maaf kar dena… feelings genuine hain, coding kabhi-kabhi suspicious ho sakti hai. 😂💻\n\nMade with lots of love, from Rohan to Sheetal. 💙✨",
+
+  apology: "Hey Sheetal… 🥺💗\n\nEk baat dil se kehni thi.\n\nMain yeh nahi kahunga ki mujhse kabhi koi galti nahi hui, ya main hamesha har baat perfectly samajh paaya. Kabhi-kabhi main galat words choose kar leta hoon, kabhi baat samajhne mein mistake ho jaati hai, aur kabhi jo dil mein hota hai, woh sahi tareeke se express nahi kar paata.\n\nAgar meri kisi baat se tum hurt hui ho, upset hui ho, ya kabhi tumhe laga ho ki tumhari feelings important nahi hain, toh I'm genuinely sorry. 💗\n\nTumhari feelings matter karti hain, aur tumhari baat ko samajhna bhi utna hi zaroori hai jitna apni baat kehna. Main har baar perfect nahi ho sakta, but apni mistakes ko samajhne aur better karne ki koshish zaroor kar sakta hoon.\n\nMain yeh expect nahi karta ki ek sorry se sab kuch instantly theek ho jaaye. Feelings ka koi undo button thodi hota hai… warna life mein Ctrl + Z sabse useful invention hota. 🥲😂\n\nBas itna chahta hoon ki misunderstandings ki wajah se honest conversations ka raasta band na ho. Jab bhi tum comfortable ho, I'd be happy to listen, samajhne ki koshish karne, aur apni taraf se cheezein better karne ke liye.\n\nHumari friendship mere liye genuinely special hai, aur main uski respect karta hoon — achhe moments mein bhi, aur un moments mein bhi jab sab kuch itna easy nahi hota.\n\nTake your time, no pressure. 💙\n\n— Rohan 🫶🏻",
+
+  wallCaption: "Har memory ke liye perfect photo hona zaroori nahi hota… kuch moments pictures mein nahi, seedha dil mein save ho jaate hain. ❤️✨\n\nAur upar jo frames khaali pade hain… 😂 unhe dekh ke tension mat lena! Shayad universe abhi photographer arrange kar raha hai, ya phir destiny ki gallery mein abhi 'under construction' chal raha hai. 🙏📸🤣\n\nKuch frames future ke liye chhod diye hain — naye laughs, random plans, silly selfies, aur woh moments jo bina planning ke hi best ban jaate hain. 🌷💫\n\nWaise bhi, humari friendship mein memories ki kami nahi… bas camera kabhi-kabhi attendance lagana bhool jaata hai. 😂🤦🏻‍♂️\n\nNo pressure, no expectations — bas dil se good wishes, thodi si masti, aur un chhoti-chhoti khushiyon ke naam jo life ko beautiful bana deti hain. 🤝💗\n\nAur agar kabhi purani memories yaad aake smile aa jaaye, toh samajhna ki woh moment sach mein worth it tha. 😊💙"
+,
       notes: [
         "Thank you for being part of my life. 💗",
         "Thank you for the laughter and random conversations. 😂",
@@ -2997,17 +3001,53 @@
         { q: "Who would suggest a completely random plan?", a: null }
       ],
       songs: [
-        { t: "A song for us (Rohan, add one)", a: "Artist", n: "A song that reminds me of this friendship." },
+        { t: "i don't know which songs do you like so i kept it empty Sorry", a: "Artist", n: "A song that reminds me of this friendship." },
         { t: "The one we both know the words to", a: "Artist", n: "Add the story behind it." },
         { t: "The song for a long ride home", a: "Artist", n: "Placeholder until Rohan picks." }
       ],
-      final: "Sheetal,\n\nIf you made it all the way here, thank you for letting me share this tiny universe with you.\n\nI'm not perfect, but I'm trying to be a friend who listens, who shows up, and who says sorry when it matters.\n\nThank you for the laughs, the random talks, and for being someone I can simply be myself around.\n\nWhatever happens next, I'm grateful you're in my story.\n\n— Rohan 💙",
+      final: "Sheetal… 🥹💗\n\nAgar tum yahan tak aa gayi ho, toh thank you… meri banayi hui is chhoti si duniya ko apna thoda sa time dene ke liye. 🌙✨\n\nPata nahi website ka kaunsa part tumhe sabse zyada pasand aaya hoga — cute si memories, meri overthinking wali lines, ya woh coding jisme developer ne emotions zyada aur bugs kam rakhne ki koshish ki hai. 😂💻\n\nBut jokes apart, is website ke peeche ek simple si feeling hai: I'm genuinely grateful ki humari raahon mein friendship ka yeh chapter aaya.\n\nMain perfect friend nahi hoon. Kabhi galat bol deta hoon, kabhi cheezein samajhne mein time laga deta hoon, aur kabhi dil ki baat kehne ke liye itne saare words chahiye hote hain ki saamne wala sochne lage, 'Bhai, short mein bol de!' 🥲😂\n\nBut I'm learning — better sunna, apni mistakes accept karna, aur un logon ki feelings ki respect karna jo mere liye matter karte hain. 💙\n\nThank you un random conversations ke liye, un hasi ke moments ke liye, un chhoti-chhoti baaton ke liye jo shayad us waqt ordinary lagi hongi, but aaj sochun toh face par smile le aati hain. 🫶🏻\n\nLife ka next chapter kaisa hoga, woh toh kisi ko nahi pata. Har story mein naye pages aate hain, kuch unexpected turns bhi… aur kabhi-kabhi plot twist writer ko bhi samajh nahi aata. 😂📖\n\nBas itna hai, Sheetal — humari story ka jo bhi hissa raha hai, uske liye I'm thankful. Tum hamesha khush raho, dil khol ke haso, apne dreams achieve karo, aur life tumhe bahut saare reasons de smile karne ke. 🌷✨\n\nAur haan, universe mein kabhi yeh website dobara kholna, toh bugs ko ignore karke thoda smile kar lena. Developer ki mehnat successful maan li jaayegi. 😂💗\n\nTake care of yourself, Sheetal. You deserve all the good things life has waiting for you.\n\nSome stories don't need a perfect ending… bas itna kaafi hota hai ki unke kuch pages dil se likhe gaye the. 💙🌙\n\n— Rohan 💙",
       /* Look: placeholders until the real details are set (skin 0-5, hairc 0-7, topc 0-6). */
       avatars: {
         rohan: { skin: 1, hair: "messy", hairc: 1, top: "hoodie", topc: 2, acc: "none" },
         sheetal: { skin: 1, hair: "long", hairc: 0, top: "dress", topc: 1, acc: "bow" }
       }
     };
+
+    // EMAIL SETUP: Create an EmailJS account and fill these three values.
+    // In your EmailJS email template, set the recipient to YOUR email address.
+    // Template variables used: {{event_name}}, {{message}}, {{timestamp}}, {{quiz_score}}, {{quiz_answers}}.
+    const EMAIL_CONFIG = {
+      publicKey: "cXydXd4XyJbLSMq_k",
+      serviceId: "service_iwv3y88",
+      templateId: "template_072ruad"
+    };
+
+    async function sendEmailNotification(eventName, details = {}) {
+      const c = EMAIL_CONFIG;
+      if (!window.emailjs) {
+        console.warn("EmailJS SDK did not load; email notification was not sent.");
+        return false;
+      }
+      if (c.publicKey.startsWith("YOUR_") || c.serviceId.startsWith("YOUR_") || c.templateId.startsWith("YOUR_")) {
+        console.info("Email notifications are not configured yet. Add your EmailJS keys in EMAIL_CONFIG.");
+        return false;
+      }
+      try {
+        window.emailjs.init({ publicKey: c.publicKey });
+        await window.emailjs.send(c.serviceId, c.templateId, {
+          event_name: eventName,
+          message: details.message || "",
+          timestamp: new Date().toLocaleString(),
+          quiz_score: details.quizScore || "Not applicable",
+          quiz_answers: details.quizAnswers || "Not applicable"
+        });
+        console.info("Email notification sent:", eventName);
+        return true;
+      } catch (error) {
+        console.error("Email notification failed:", error);
+        return false;
+      }
+    }
 
     (function () {
       'use strict';
@@ -3631,6 +3671,8 @@
       const HUGMSG = ['Sending you a little hug from my side of the screen to yours. 🫂💗', 'One more? Always. 🥹', 'Extra squeeze, because you matter. 🤍', 'Hug delivered. Fully refundable, but nobody ever asks. 😂'];
       async function doHug() {
         if (hugBusy) return; hugBusy = true; ac(); const v = hugN % 4; $('#hug-msg').textContent = HUGMSG[v]; hugN++;
+        // Send a quiet email notification when the virtual hug button is pressed.
+        void sendEmailNotification('Virtual hug clicked', { message: HUGMSG[v] });
         scene(stHug, { r: { x: 44, pose: 'reachR', mood: 'happy', look: 'right', anim: '' }, s: { x: 56, pose: 'reachL', mood: 'happy', look: 'left', anim: '' }, zoom: 1, bg: 'glow' });
         await sleep(calm ? 100 : 1700);
         const an = ['squeeze', 'rock', 'bounce', 'squeeze'][v];
@@ -3654,10 +3696,35 @@
       const lBase = () => scene(stL, { r: Object.assign({}, BASEP, { x: 32, mood: 'happy', look: 'right' }), s: Object.assign({}, BASEP, { x: 68, mood: 'happy', look: 'left' }), chaos: 0 });
       lBase();
       const JOKES = [
-        ['Why did the cookie go to the doctor?', 'Because it felt crummy. 🍪'], ['What do you call two best friends who cannot stop laughing?', 'A very loud problem. 😂'],
-        ['Why was the phone wearing glasses?', 'It lost all its contacts. 📱'], ['I told my brain to stop overthinking.', 'It said, "Let me think about it." 🧠'],
-        ['Why did the star get invited everywhere?', 'It was always a bright idea. ⭐'], ['What is a bestie\'s favourite kind of math?', 'Add the snacks, subtract the drama. 🍟'], ['Why did the moon skip dinner?', 'It was already full. 🌕']
-      ];
+  [
+    'Cookie doctor ke paas kyun gayi? 🍪',
+    'Kyunki usse thodi si tension thi… par meri bestie ki tarah, use bhi bas pyaar aur care chahiye thi, lecture nahi. 🥹💗'
+  ],
+  [
+    'Do besties jab baat karte hain toh itni hasi kyun aati hai? 😂',
+    'Kyunki ek normal baat ko bhi secret mission bana dete hain! Bas madam, tension mat lena… tumhari smile important hai, aur tumhara sukoon usse bhi zyada. 🫶🏻'
+  ],
+  [
+    'Phone ne chashma kyun pehna? 📱',
+    'Uske contacts dhundhle ho gaye the! 😂 Waise kal raat block wali mystery bhi solve ho gayi — agar galti se hua tha toh koi baat nahi, madam. Ek button se apni bonding thodi delete hoti hai. 💙'
+  ],
+  [
+    'Maine apne brain ko bola, "Overthinking band kar!" 🧠',
+    'Brain bola, "Pehle madam ki family wali tension samajh lete hain!" 🥹😂 Mujhe pata hai tum kabhi-kabhi darr jaati ho ki ghar pe pata chala toh kya hoga. Main tumhari situation ko lightly nahi leta… tumhari safety aur peace mere liye important hai. 💗'
+  ],
+  [
+    'Star ko har jagah invite kyun milta hai? ⭐',
+    'Kyunki uski roshni special hoti hai! Bilkul tumhari tarah… aur suno, har waqt happy rehna zaroori nahi. Agar kabhi darr lage ya mood off ho, toh bhi tum utni hi special ho. 🌙💖'
+  ],
+  [
+    'Bestie ka favourite maths formula kya hai? 🍟',
+    'Thodi si hasi + extra fries − unnecessary tension = perfect day! 😂 Aur family ko lekar jitni bhi tension ho, tumhe kisi cheez ke liye jaldi ya pressure mein decision lene ki zaroorat nahi. Tumhara comfort first, madam ji. 🫶🏻'
+  ],
+  [
+    'Moon ne dinner skip kyun kiya? 🌕',
+    'Kyunki woh already full tha… bilkul mera heart, tumhari chhoti-chhoti baaton se! 🥹💗 Chahe tum nervous ho, gussa ho, galti se block kar do ya bas chup rehna chaho — tumhari feelings matter karti hain. No complaints, no pressure… bas apna khayal rakhna, okay? 🌷'
+  ]
+];
       const DANCES = ["Bro really thinks he's the main character. 💀😂", 'Somebody stop him. Actually, no. Keep going. 🕺', "That's not a dance, that's a cry for help. 😭", '10 out of 10 for confidence. 2 out of 10 for rhythm. 🫡'];
       const CHAOS = ['NO THOUGHTS. JUST BESTIE ENERGY. 😭✨', 'SYSTEM ERROR: TOO MUCH FUN. 🤪', 'ALERT: ZERO BRAIN CELLS, MAXIMUM JOY. 🎉'];
       const MOMENTS = [
@@ -3703,7 +3770,7 @@
 
       /* --- A: quiz --- */
       (function quiz() {
-        const P = $('#g-quiz'); let qi = 0, ok = 0, graded = 0, played = 0;
+        const P = $('#g-quiz'); let qi = 0, ok = 0, graded = 0, played = 0; const quizAnswers = [];
         function render() {
           if (qi >= S.quiz.length) return end(); const q = S.quiz[qi];
           P.innerHTML = `<div class="stage mini" id="st-q" data-deco="sky"></div><p class="eyebrow center">Question ${qi + 1} of ${S.quiz.length}</p><h3 class="center">${esc(q.q)}</h3><div class="ans"><button class="btn" data-a="rohan">Rohan 💙</button><button class="btn" data-a="sheetal">Sheetal 💗</button></div><div class="fb" id="q-fb"></div><div class="row" id="q-next"></div>`;
@@ -3711,21 +3778,23 @@
         }
         function end() {
           const msg = graded ? `You matched ${ok} of ${graded}. ${ok === graded ? 'Basically a friendship expert. 🥳' : ok >= graded / 2 ? 'Not bad at all. 💗' : 'Time to compare notes. 😂'}` : `You made ${played} guesses. Time to argue about them with Rohan. 😂💗`;
+          // Email the quiz score and the selected answers when the quiz finishes.
+          void sendEmailNotification('Friendship quiz completed', { quizScore: `${ok} correct out of ${graded} graded (${played} questions answered)`, quizAnswers: quizAnswers.join('\n'), message: msg });
           P.innerHTML = `<div class="stage mini" id="st-q" data-deco="sky"></div><h3 class="center">That's the quiz!</h3><p class="fb">${esc(msg)}</p><div class="row"><button class="btn" id="q-restart">Play again</button></div>`;
           const st = $('#st-q'); st.dataset.nopoke = 1; buildStage(st); scene(st, { r: { x: 36, mood: 'proud', pose: 'up', anim: 'dance' }, s: { x: 64, mood: 'proud', pose: 'up', anim: 'dance' } }); burstAt(st, 'confetti', 40); sfx.tada();
         }
         P.addEventListener('click', e => {
           const b = e.target.closest('[data-a]');
           if (b && !P.dataset.lock) {
-            const q = S.quiz[qi], st = $('#st-q'); $$('[data-a]', P).forEach(x => x.disabled = true); played++; ac(); let fb;
+            const q = S.quiz[qi], st = $('#st-q'); $$('[data-a]', P).forEach(x => x.disabled = true); played++; quizAnswers.push(`Q${qi + 1}: ${q.q} — selected ${b.dataset.a === 'rohan' ? 'Rohan' : 'Sheetal'}`); ac(); let fb;
             if (q.a == null) { fb = 'Interesting pick! Everyone has an opinion on this one. 😏'; scene(st, { r: { mood: 'smirk', look: 'left' }, s: { mood: 'smirk', look: 'right' } }); sfx.pop(); }
             else if (b.dataset.a === q.a) { ok++; graded++; fb = 'Yes! You know us too well. 🥳'; scene(st, { r: { mood: 'excited', anim: 'jump', pose: 'up' }, s: { mood: 'excited', anim: 'jump', pose: 'up' } }); burstAt(st, 'confetti', 30); sfx.tada(); }
             else { graded++; fb = `Ooh, not quite. It was ${q.a === 'rohan' ? 'Rohan 💙' : 'Sheetal 💗'}. 😂`; scene(st, { r: { mood: 'laugh', anim: 'laugh' }, s: { mood: 'laugh', anim: 'laugh' } }); sfx.oops(); }
             $('#q-fb').textContent = fb; $('#q-next').innerHTML = `<button class="btn" id="q-nx">${qi + 1 >= S.quiz.length ? 'See result' : 'Next question'}</button>`;
           } else if (e.target.id === 'q-nx') { qi++; render(); }
-          else if (e.target.id === 'q-restart') { qi = ok = graded = played = 0; render(); }
+          else if (e.target.id === 'q-restart') { qi = ok = graded = played = 0; quizAnswers.length = 0; render(); }
         });
-        window.__quizReset = () => { qi = ok = graded = played = 0; render(); };
+        window.__quizReset = () => { qi = ok = graded = played = 0; quizAnswers.length = 0; render(); };
         render();
       })();
 
